@@ -1,0 +1,1724 @@
+Baseline: Training FacebookAI/roberta-base on wikitext (wikitext-2-raw-v1) from scratch
+11/21/2024 11:34:34 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:34:34 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/runs/Nov21_11-34-33_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:34:37 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:34:37 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:34:37 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:34:37 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:692] 2024-11-21 11:34:37,311 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:34:37,313 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|configuration_utils.py:692] 2024-11-21 11:34:37,358 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:34:37,359 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file vocab.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/vocab.json
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file merges.txt from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/merges.txt
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file tokenizer.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/tokenizer.json
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:34:37,375 >> loading file tokenizer_config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/tokenizer_config.json
+[INFO|configuration_utils.py:692] 2024-11-21 11:34:37,375 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:34:37,376 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|modeling_utils.py:3947] 2024-11-21 11:34:37,500 >> loading weights file model.safetensors from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:34:37,758 >> All model checkpoint weights were used when initializing RobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:34:37,758 >> All the weights of RobertaForMaskedLM were initialized from the model checkpoint at FacebookAI/roberta-base.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use RobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4c9ee361c15b136a.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4c9ee361c15b136a.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-66d63142d6c31836.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-66d63142d6c31836.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4f3300987892a80a.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4f3300987892a80a.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4ecf1f13d3b1c2be.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4ecf1f13d3b1c2be.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f94471c54e8503fb.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f94471c54e8503fb.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c8810aa08556e7b4.arrow
+11/21/2024 11:34:37 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c8810aa08556e7b4.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:34:39,604 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:34:39,728 >> The following columns in the training set don't have a corresponding argument in `RobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `RobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:34:39,731 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:34:39,731 >>   Num examples = 4,798
+[INFO|trainer.py:2337] 2024-11-21 11:34:39,731 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:34:39,731 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:34:39,731 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:34:39,731 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:34:39,731 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:34:39,731 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:34:39,732 >>   Number of trainable parameters = 124,697,433
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<21:32,  6.50s/it]  1%|          | 2/200 [00:06<09:31,  2.88s/it]  2%|▏         | 3/200 [00:07<05:41,  1.73s/it]  2%|▏         | 4/200 [00:07<03:53,  1.19s/it]  2%|▎         | 5/200 [00:07<02:53,  1.12it/s]  3%|▎         | 6/200 [00:08<02:17,  1.41it/s]  4%|▎         | 7/200 [00:08<01:55,  1.67it/s]  4%|▍         | 8/200 [00:09<01:39,  1.92it/s]  4%|▍         | 9/200 [00:09<01:29,  2.13it/s]  5%|▌         | 10/200 [00:09<01:22,  2.30it/s]  6%|▌         | 11/200 [00:10<01:18,  2.42it/s]  6%|▌         | 12/200 [00:10<01:14,  2.52it/s]  6%|▋         | 13/200 [00:10<01:12,  2.58it/s]  7%|▋         | 14/200 [00:11<01:11,  2.62it/s]  8%|▊         | 15/200 [00:11<01:09,  2.66it/s]  8%|▊         | 16/200 [00:11<01:08,  2.69it/s]  8%|▊         | 17/200 [00:12<01:07,  2.71it/s]  9%|▉         | 18/200 [00:12<01:07,  2.69it/s] 10%|▉         | 19/200 [00:13<01:06,  2.71it/s] 10%|█         | 20/200 [00:13<01:06,  2.69it/s] 10%|█         | 21/200 [00:13<01:06,  2.71it/s] 11%|█         | 22/200 [00:14<01:05,  2.73it/s] 12%|█▏        | 23/200 [00:14<01:04,  2.75it/s] 12%|█▏        | 24/200 [00:14<01:03,  2.75it/s] 12%|█▎        | 25/200 [00:15<01:03,  2.75it/s] 13%|█▎        | 26/200 [00:15<01:03,  2.74it/s] 14%|█▎        | 27/200 [00:15<01:02,  2.75it/s] 14%|█▍        | 28/200 [00:16<01:02,  2.76it/s] 14%|█▍        | 29/200 [00:16<01:07,  2.54it/s] 15%|█▌        | 30/200 [00:17<01:05,  2.61it/s] 16%|█▌        | 31/200 [00:17<01:03,  2.66it/s] 16%|█▌        | 32/200 [00:17<01:02,  2.70it/s] 16%|█▋        | 33/200 [00:18<01:01,  2.71it/s] 17%|█▋        | 34/200 [00:18<01:00,  2.74it/s] 18%|█▊        | 35/200 [00:18<01:00,  2.74it/s] 18%|█▊        | 36/200 [00:19<01:00,  2.71it/s] 18%|█▊        | 37/200 [00:19<00:59,  2.73it/s] 19%|█▉        | 38/200 [00:20<00:59,  2.71it/s] 20%|█▉        | 39/200 [00:20<00:59,  2.71it/s] 20%|██        | 40/200 [00:20<00:58,  2.74it/s] 20%|██        | 41/200 [00:21<00:58,  2.72it/s] 21%|██        | 42/200 [00:21<00:57,  2.73it/s] 22%|██▏       | 43/200 [00:21<00:57,  2.75it/s] 22%|██▏       | 44/200 [00:22<00:56,  2.74it/s] 22%|██▎       | 45/200 [00:22<00:56,  2.74it/s] 23%|██▎       | 46/200 [00:22<00:55,  2.76it/s] 24%|██▎       | 47/200 [00:23<00:55,  2.77it/s] 24%|██▍       | 48/200 [00:23<00:55,  2.75it/s] 24%|██▍       | 49/200 [00:24<00:54,  2.76it/s] 25%|██▌       | 50/200 [00:24<00:54,  2.76it/s] 26%|██▌       | 51/200 [00:24<00:53,  2.76it/s] 26%|██▌       | 52/200 [00:25<00:53,  2.75it/s] 26%|██▋       | 53/200 [00:25<00:53,  2.77it/s] 27%|██▋       | 54/200 [00:25<00:53,  2.74it/s] 28%|██▊       | 55/200 [00:26<00:56,  2.56it/s] 28%|██▊       | 56/200 [00:26<00:54,  2.63it/s] 28%|██▊       | 57/200 [00:27<00:53,  2.67it/s] 29%|██▉       | 58/200 [00:27<00:52,  2.71it/s] 30%|██▉       | 59/200 [00:27<00:52,  2.70it/s] 30%|███       | 60/200 [00:28<00:51,  2.74it/s] 30%|███       | 61/200 [00:28<00:50,  2.77it/s] 31%|███       | 62/200 [00:28<00:49,  2.79it/s] 32%|███▏      | 63/200 [00:29<00:49,  2.79it/s] 32%|███▏      | 64/200 [00:29<00:48,  2.78it/s] 32%|███▎      | 65/200 [00:29<00:48,  2.79it/s] 33%|███▎      | 66/200 [00:30<00:48,  2.76it/s] 34%|███▎      | 67/200 [00:30<00:48,  2.76it/s] 34%|███▍      | 68/200 [00:30<00:47,  2.78it/s] 34%|███▍      | 69/200 [00:31<00:47,  2.77it/s] 35%|███▌      | 70/200 [00:31<00:46,  2.77it/s] 36%|███▌      | 71/200 [00:32<00:46,  2.78it/s] 36%|███▌      | 72/200 [00:32<00:46,  2.76it/s] 36%|███▋      | 73/200 [00:32<00:45,  2.76it/s] 37%|███▋      | 74/200 [00:33<00:45,  2.76it/s] 38%|███▊      | 75/200 [00:33<00:45,  2.75it/s] 38%|███▊      | 76/200 [00:33<00:45,  2.75it/s] 38%|███▊      | 77/200 [00:34<00:44,  2.76it/s] 39%|███▉      | 78/200 [00:34<00:44,  2.75it/s] 40%|███▉      | 79/200 [00:34<00:43,  2.76it/s] 40%|████      | 80/200 [00:35<00:43,  2.77it/s] 40%|████      | 81/200 [00:35<00:46,  2.57it/s] 41%|████      | 82/200 [00:36<00:44,  2.63it/s] 42%|████▏     | 83/200 [00:36<00:44,  2.65it/s] 42%|████▏     | 84/200 [00:36<00:43,  2.67it/s] 42%|████▎     | 85/200 [00:37<00:42,  2.71it/s] 43%|████▎     | 86/200 [00:37<00:42,  2.71it/s] 44%|████▎     | 87/200 [00:37<00:41,  2.73it/s] 44%|████▍     | 88/200 [00:38<00:40,  2.75it/s] 44%|████▍     | 89/200 [00:38<00:40,  2.75it/s] 45%|████▌     | 90/200 [00:39<00:39,  2.75it/s] 46%|████▌     | 91/200 [00:39<00:40,  2.72it/s] 46%|████▌     | 92/200 [00:39<00:39,  2.74it/s] 46%|████▋     | 93/200 [00:40<00:38,  2.75it/s] 47%|████▋     | 94/200 [00:40<00:38,  2.75it/s] 48%|████▊     | 95/200 [00:40<00:38,  2.75it/s] 48%|████▊     | 96/200 [00:41<00:37,  2.77it/s] 48%|████▊     | 97/200 [00:41<00:37,  2.77it/s] 49%|████▉     | 98/200 [00:41<00:36,  2.76it/s] 50%|████▉     | 99/200 [00:42<00:36,  2.77it/s] 50%|█████     | 100/200 [00:42<00:36,  2.76it/s] 50%|█████     | 101/200 [00:43<00:35,  2.76it/s] 51%|█████     | 102/200 [00:43<00:35,  2.75it/s] 52%|█████▏    | 103/200 [00:43<00:35,  2.76it/s] 52%|█████▏    | 104/200 [00:44<00:34,  2.76it/s] 52%|█████▎    | 105/200 [00:44<00:34,  2.73it/s] 53%|█████▎    | 106/200 [00:44<00:35,  2.63it/s] 54%|█████▎    | 107/200 [00:45<00:32,  2.84it/s] 54%|█████▍    | 108/200 [00:45<00:32,  2.81it/s] 55%|█████▍    | 109/200 [00:45<00:32,  2.80it/s] 55%|█████▌    | 110/200 [00:46<00:32,  2.78it/s] 56%|█████▌    | 111/200 [00:46<00:32,  2.78it/s] 56%|█████▌    | 112/200 [00:47<00:32,  2.74it/s] 56%|█████▋    | 113/200 [00:47<00:31,  2.75it/s] 57%|█████▋    | 114/200 [00:47<00:31,  2.76it/s] 57%|█████▊    | 115/200 [00:48<00:30,  2.75it/s] 58%|█████▊    | 116/200 [00:48<00:30,  2.77it/s] 58%|█████▊    | 117/200 [00:48<00:30,  2.75it/s] 59%|█████▉    | 118/200 [00:49<00:29,  2.75it/s] 60%|█████▉    | 119/200 [00:49<00:29,  2.75it/s] 60%|██████    | 120/200 [00:49<00:29,  2.75it/s] 60%|██████    | 121/200 [00:50<00:28,  2.77it/s] 61%|██████    | 122/200 [00:50<00:28,  2.76it/s] 62%|██████▏   | 123/200 [00:50<00:27,  2.77it/s] 62%|██████▏   | 124/200 [00:51<00:27,  2.75it/s] 62%|██████▎   | 125/200 [00:51<00:26,  2.78it/s] 63%|██████▎   | 126/200 [00:52<00:26,  2.78it/s] 64%|██████▎   | 127/200 [00:52<00:26,  2.77it/s] 64%|██████▍   | 128/200 [00:52<00:26,  2.75it/s] 64%|██████▍   | 129/200 [00:53<00:25,  2.75it/s] 65%|██████▌   | 130/200 [00:53<00:25,  2.74it/s] 66%|██████▌   | 131/200 [00:53<00:25,  2.75it/s] 66%|██████▌   | 132/200 [00:54<00:24,  2.75it/s] 66%|██████▋   | 133/200 [00:54<00:24,  2.75it/s] 67%|██████▋   | 134/200 [00:54<00:23,  2.76it/s] 68%|██████▊   | 135/200 [00:55<00:25,  2.58it/s] 68%|██████▊   | 136/200 [00:55<00:24,  2.64it/s] 68%|██████▊   | 137/200 [00:56<00:23,  2.67it/s] 69%|██████▉   | 138/200 [00:56<00:22,  2.70it/s] 70%|██████▉   | 139/200 [00:56<00:22,  2.70it/s] 70%|███████   | 140/200 [00:57<00:22,  2.69it/s] 70%|███████   | 141/200 [00:57<00:21,  2.71it/s] 71%|███████   | 142/200 [00:57<00:21,  2.72it/s] 72%|███████▏  | 143/200 [00:58<00:20,  2.74it/s] 72%|███████▏  | 144/200 [00:58<00:20,  2.75it/s] 72%|███████▎  | 145/200 [00:59<00:20,  2.75it/s] 73%|███████▎  | 146/200 [00:59<00:19,  2.76it/s] 74%|███████▎  | 147/200 [00:59<00:19,  2.76it/s] 74%|███████▍  | 148/200 [01:00<00:18,  2.77it/s] 74%|███████▍  | 149/200 [01:00<00:18,  2.74it/s] 75%|███████▌  | 150/200 [01:00<00:18,  2.72it/s] 76%|███████▌  | 151/200 [01:01<00:17,  2.73it/s] 76%|███████▌  | 152/200 [01:01<00:17,  2.73it/s] 76%|███████▋  | 153/200 [01:01<00:17,  2.74it/s] 77%|███████▋  | 154/200 [01:02<00:16,  2.75it/s] 78%|███████▊  | 155/200 [01:02<00:16,  2.74it/s] 78%|███████▊  | 156/200 [01:03<00:16,  2.75it/s] 78%|███████▊  | 157/200 [01:03<00:15,  2.73it/s] 79%|███████▉  | 158/200 [01:03<00:15,  2.74it/s] 80%|███████▉  | 159/200 [01:04<00:15,  2.73it/s] 80%|████████  | 160/200 [01:04<00:14,  2.75it/s] 80%|████████  | 161/200 [01:04<00:15,  2.56it/s] 81%|████████  | 162/200 [01:05<00:14,  2.63it/s] 82%|████████▏ | 163/200 [01:05<00:13,  2.65it/s] 82%|████████▏ | 164/200 [01:06<00:13,  2.66it/s] 82%|████████▎ | 165/200 [01:06<00:13,  2.69it/s] 83%|████████▎ | 166/200 [01:06<00:12,  2.71it/s] 84%|████████▎ | 167/200 [01:07<00:12,  2.72it/s] 84%|████████▍ | 168/200 [01:07<00:11,  2.72it/s] 84%|████████▍ | 169/200 [01:07<00:11,  2.74it/s] 85%|████████▌ | 170/200 [01:08<00:10,  2.73it/s] 86%|████████▌ | 171/200 [01:08<00:10,  2.74it/s] 86%|████████▌ | 172/200 [01:09<00:10,  2.75it/s] 86%|████████▋ | 173/200 [01:09<00:09,  2.76it/s] 87%|████████▋ | 174/200 [01:09<00:09,  2.74it/s] 88%|████████▊ | 175/200 [01:10<00:09,  2.75it/s] 88%|████████▊ | 176/200 [01:10<00:08,  2.75it/s] 88%|████████▊ | 177/200 [01:10<00:08,  2.76it/s] 89%|████████▉ | 178/200 [01:11<00:07,  2.76it/s] 90%|████████▉ | 179/200 [01:11<00:07,  2.77it/s] 90%|█████████ | 180/200 [01:11<00:07,  2.76it/s] 90%|█████████ | 181/200 [01:12<00:06,  2.76it/s] 91%|█████████ | 182/200 [01:12<00:06,  2.76it/s] 92%|█████████▏| 183/200 [01:12<00:06,  2.74it/s] 92%|█████████▏| 184/200 [01:13<00:05,  2.75it/s] 92%|█████████▎| 185/200 [01:13<00:05,  2.76it/s] 93%|█████████▎| 186/200 [01:14<00:05,  2.48it/s] 94%|█████████▎| 187/200 [01:14<00:05,  2.59it/s] 94%|█████████▍| 188/200 [01:14<00:04,  2.65it/s] 94%|█████████▍| 189/200 [01:15<00:04,  2.69it/s] 95%|█████████▌| 190/200 [01:15<00:03,  2.73it/s] 96%|█████████▌| 191/200 [01:15<00:03,  2.75it/s] 96%|█████████▌| 192/200 [01:16<00:02,  2.74it/s] 96%|█████████▋| 193/200 [01:16<00:02,  2.73it/s] 97%|█████████▋| 194/200 [01:17<00:02,  2.73it/s] 98%|█████████▊| 195/200 [01:17<00:01,  2.75it/s] 98%|█████████▊| 196/200 [01:17<00:01,  2.75it/s] 98%|█████████▊| 197/200 [01:18<00:01,  2.76it/s] 99%|█████████▉| 198/200 [01:18<00:00,  2.78it/s]100%|█████████▉| 199/200 [01:18<00:00,  2.76it/s]100%|██████████| 200/200 [01:19<00:00,  2.74it/s][INFO|trainer.py:3846] 2024-11-21 11:35:58,998 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:416] 2024-11-21 11:35:58,999 >> Configuration saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/checkpoint-200/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:36:00,002 >> Model weights saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/checkpoint-200/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:36:00,003 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:36:00,003 >> Special tokens file saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:36:01,198 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [01:21<00:00,  2.74it/s]100%|██████████| 200/200 [01:21<00:00,  2.46it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:36:01,199 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1
+[INFO|configuration_utils.py:416] 2024-11-21 11:36:01,200 >> Configuration saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:36:02,179 >> Model weights saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:36:02,180 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:36:02,180 >> Special tokens file saved in /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/special_tokens_map.json
+{'train_runtime': 81.466, 'train_samples_per_second': 39.28, 'train_steps_per_second': 2.455, 'train_loss': 1.4766960144042969, 'epoch': 0.67}
+***** train metrics *****
+  epoch                    =     0.6667
+  total_flos               =   784592GF
+  train_loss               =     1.4767
+  train_runtime            = 0:01:21.46
+  train_samples            =       4798
+  train_samples_per_second =      39.28
+  train_steps_per_second   =      2.455
+11/21/2024 11:36:02 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:36:02,224 >> The following columns in the evaluation set don't have a corresponding argument in `RobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `RobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:36:02,226 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:36:02,226 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:36:02,226 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  6.30it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.59it/s] 25%|██▌       | 4/16 [00:00<00:03,  3.94it/s] 31%|███▏      | 5/16 [00:01<00:03,  3.63it/s] 38%|███▊      | 6/16 [00:01<00:02,  3.49it/s] 44%|████▍     | 7/16 [00:01<00:02,  3.38it/s] 50%|█████     | 8/16 [00:02<00:02,  3.34it/s] 56%|█████▋    | 9/16 [00:02<00:02,  3.30it/s] 62%|██████▎   | 10/16 [00:02<00:01,  3.27it/s] 69%|██████▉   | 11/16 [00:03<00:01,  3.27it/s] 75%|███████▌  | 12/16 [00:03<00:01,  3.29it/s] 81%|████████▏ | 13/16 [00:03<00:00,  3.28it/s] 88%|████████▊ | 14/16 [00:04<00:00,  3.27it/s] 94%|█████████▍| 15/16 [00:04<00:00,  3.30it/s]100%|██████████| 16/16 [00:04<00:00,  3.74it/s]100%|██████████| 16/16 [00:04<00:00,  3.47it/s]
+***** eval metrics *****
+  epoch                   =     0.6667
+  eval_accuracy           =     0.7258
+  eval_loss               =     1.2903
+  eval_runtime            = 0:00:04.95
+  eval_samples            =        496
+  eval_samples_per_second =     100.17
+  eval_steps_per_second   =      3.231
+  perplexity              =     3.6337
+------------------------------------
+LoRA: Fine-tuning FacebookAI/roberta-base on wikitext (wikitext-2-raw-v1) using baseline model
+11/21/2024 11:36:12 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:36:12 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=1e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/runs/Nov21_11-36-11_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:36:14 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:36:14 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:36:14 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:36:14 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:690] 2024-11-21 11:36:14,534 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:36:14,535 >> Model config RobertaConfig {
+  "_name_or_path": "/tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:36:14,557 >> loading file tokenizer_config.json
+[INFO|modeling_utils.py:3944] 2024-11-21 11:36:14,679 >> loading weights file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:36:14,931 >> All model checkpoint weights were used when initializing RobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:36:14,931 >> All the weights of RobertaForMaskedLM were initialized from the model checkpoint at /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use RobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-23a0271f2f8a2467.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-23a0271f2f8a2467.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-43d528b8bca91750.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-43d528b8bca91750.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c51129c3563daff2.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c51129c3563daff2.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-fa441a58912bdf7f.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-fa441a58912bdf7f.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4e41ebc498141aa6.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4e41ebc498141aa6.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-bebd6360cd21b34d.arrow
+11/21/2024 11:36:15 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-bebd6360cd21b34d.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:36:16,800 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:36:16,928 >> The following columns in the training set don't have a corresponding argument in `PeftModelForCausalLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `PeftModelForCausalLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:36:16,932 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:36:16,933 >>   Num examples = 4,798
+[INFO|trainer.py:2337] 2024-11-21 11:36:16,933 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:36:16,933 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:36:16,933 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:36:16,933 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:36:16,933 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:36:16,933 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:36:16,933 >>   Number of trainable parameters = 294,912
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<21:36,  6.52s/it]  1%|          | 2/200 [00:06<09:31,  2.89s/it]  2%|▏         | 3/200 [00:07<05:41,  1.73s/it]  2%|▏         | 4/200 [00:07<03:52,  1.19s/it]  2%|▎         | 5/200 [00:07<02:52,  1.13it/s]  3%|▎         | 6/200 [00:08<02:17,  1.41it/s]  4%|▎         | 7/200 [00:08<01:54,  1.68it/s]  4%|▍         | 8/200 [00:09<01:39,  1.93it/s]  4%|▍         | 9/200 [00:09<01:30,  2.12it/s]  5%|▌         | 10/200 [00:09<01:28,  2.14it/s]  6%|▌         | 11/200 [00:10<01:21,  2.32it/s]  6%|▌         | 12/200 [00:10<01:16,  2.46it/s]  6%|▋         | 13/200 [00:10<01:14,  2.52it/s]  7%|▋         | 14/200 [00:11<01:11,  2.61it/s]  8%|▊         | 15/200 [00:11<01:09,  2.67it/s]  8%|▊         | 16/200 [00:11<01:07,  2.72it/s]  8%|▊         | 17/200 [00:12<01:06,  2.76it/s]  9%|▉         | 18/200 [00:12<01:05,  2.79it/s] 10%|▉         | 19/200 [00:13<01:04,  2.80it/s] 10%|█         | 20/200 [00:13<01:12,  2.49it/s] 10%|█         | 21/200 [00:13<01:09,  2.58it/s] 11%|█         | 22/200 [00:14<01:07,  2.63it/s] 12%|█▏        | 23/200 [00:14<01:05,  2.69it/s] 12%|█▏        | 24/200 [00:14<01:04,  2.74it/s] 12%|█▎        | 25/200 [00:15<01:03,  2.76it/s] 13%|█▎        | 26/200 [00:15<01:02,  2.77it/s] 14%|█▎        | 27/200 [00:16<01:02,  2.77it/s] 14%|█▍        | 28/200 [00:16<01:02,  2.76it/s] 14%|█▍        | 29/200 [00:16<01:08,  2.49it/s] 15%|█▌        | 30/200 [00:17<01:05,  2.58it/s] 16%|█▌        | 31/200 [00:17<01:03,  2.65it/s] 16%|█▌        | 32/200 [00:17<01:02,  2.69it/s] 16%|█▋        | 33/200 [00:18<01:01,  2.70it/s] 17%|█▋        | 34/200 [00:18<01:00,  2.73it/s] 18%|█▊        | 35/200 [00:19<00:59,  2.76it/s] 18%|█▊        | 36/200 [00:19<00:58,  2.78it/s] 18%|█▊        | 37/200 [00:19<00:58,  2.79it/s] 19%|█▉        | 38/200 [00:20<01:02,  2.60it/s] 20%|█▉        | 39/200 [00:20<00:56,  2.83it/s] 20%|██        | 40/200 [00:20<00:55,  2.89it/s] 20%|██        | 41/200 [00:21<00:55,  2.85it/s] 21%|██        | 42/200 [00:21<00:55,  2.83it/s] 22%|██▏       | 43/200 [00:21<00:55,  2.85it/s] 22%|██▏       | 44/200 [00:22<00:54,  2.86it/s] 22%|██▎       | 45/200 [00:22<00:54,  2.83it/s] 23%|██▎       | 46/200 [00:22<00:54,  2.81it/s] 24%|██▎       | 47/200 [00:23<00:54,  2.81it/s] 24%|██▍       | 48/200 [00:23<00:58,  2.58it/s] 24%|██▍       | 49/200 [00:24<00:56,  2.66it/s] 25%|██▌       | 50/200 [00:24<00:55,  2.70it/s] 26%|██▌       | 51/200 [00:24<00:54,  2.74it/s] 26%|██▌       | 52/200 [00:25<00:53,  2.77it/s] 26%|██▋       | 53/200 [00:25<00:52,  2.82it/s] 27%|██▋       | 54/200 [00:25<00:52,  2.80it/s] 28%|██▊       | 55/200 [00:26<00:52,  2.77it/s] 28%|██▊       | 56/200 [00:26<00:52,  2.75it/s] 28%|██▊       | 57/200 [00:26<00:51,  2.77it/s] 29%|██▉       | 58/200 [00:27<00:58,  2.43it/s] 30%|██▉       | 59/200 [00:27<00:55,  2.52it/s] 30%|███       | 60/200 [00:28<00:53,  2.60it/s] 30%|███       | 61/200 [00:28<00:52,  2.66it/s] 31%|███       | 62/200 [00:28<00:51,  2.70it/s] 32%|███▏      | 63/200 [00:29<00:50,  2.70it/s] 32%|███▏      | 64/200 [00:29<00:50,  2.72it/s] 32%|███▎      | 65/200 [00:29<00:48,  2.77it/s] 33%|███▎      | 66/200 [00:30<00:48,  2.78it/s] 34%|███▎      | 67/200 [00:30<00:53,  2.48it/s] 34%|███▍      | 68/200 [00:31<00:50,  2.60it/s] 34%|███▍      | 69/200 [00:31<00:49,  2.66it/s] 35%|███▌      | 70/200 [00:31<00:48,  2.69it/s] 36%|███▌      | 71/200 [00:32<00:47,  2.72it/s] 36%|███▌      | 72/200 [00:32<00:46,  2.75it/s] 36%|███▋      | 73/200 [00:32<00:45,  2.79it/s] 37%|███▋      | 74/200 [00:33<00:45,  2.79it/s] 38%|███▊      | 75/200 [00:33<00:44,  2.80it/s] 38%|███▊      | 76/200 [00:34<00:47,  2.60it/s] 38%|███▊      | 77/200 [00:34<00:43,  2.85it/s] 39%|███▉      | 78/200 [00:34<00:42,  2.89it/s] 40%|███▉      | 79/200 [00:35<00:42,  2.86it/s] 40%|████      | 80/200 [00:35<00:41,  2.89it/s] 40%|████      | 81/200 [00:35<00:41,  2.87it/s] 41%|████      | 82/200 [00:36<00:41,  2.87it/s] 42%|████▏     | 83/200 [00:36<00:40,  2.85it/s] 42%|████▏     | 84/200 [00:36<00:41,  2.82it/s] 42%|████▎     | 85/200 [00:37<00:41,  2.79it/s] 43%|████▎     | 86/200 [00:37<00:45,  2.52it/s] 44%|████▎     | 87/200 [00:38<00:43,  2.61it/s] 44%|████▍     | 88/200 [00:38<00:42,  2.65it/s] 44%|████▍     | 89/200 [00:38<00:41,  2.68it/s] 45%|████▌     | 90/200 [00:39<00:40,  2.73it/s] 46%|████▌     | 91/200 [00:39<00:39,  2.74it/s] 46%|████▌     | 92/200 [00:39<00:39,  2.74it/s] 46%|████▋     | 93/200 [00:40<00:38,  2.75it/s] 47%|████▋     | 94/200 [00:40<00:38,  2.74it/s] 48%|████▊     | 95/200 [00:40<00:37,  2.78it/s] 48%|████▊     | 96/200 [00:41<00:41,  2.49it/s] 48%|████▊     | 97/200 [00:41<00:39,  2.58it/s] 49%|████▉     | 98/200 [00:42<00:38,  2.65it/s] 50%|████▉     | 99/200 [00:42<00:37,  2.66it/s] 50%|█████     | 100/200 [00:42<00:36,  2.72it/s] 50%|█████     | 101/200 [00:43<00:36,  2.74it/s] 51%|█████     | 102/200 [00:43<00:35,  2.74it/s] 52%|█████▏    | 103/200 [00:43<00:34,  2.78it/s] 52%|█████▏    | 104/200 [00:44<00:34,  2.77it/s] 52%|█████▎    | 105/200 [00:44<00:37,  2.54it/s] 53%|█████▎    | 106/200 [00:45<00:35,  2.67it/s] 54%|█████▎    | 107/200 [00:45<00:34,  2.73it/s] 54%|█████▍    | 108/200 [00:45<00:33,  2.77it/s] 55%|█████▍    | 109/200 [00:46<00:32,  2.77it/s] 55%|█████▌    | 110/200 [00:46<00:32,  2.79it/s] 56%|█████▌    | 111/200 [00:46<00:31,  2.81it/s] 56%|█████▌    | 112/200 [00:47<00:31,  2.79it/s] 56%|█████▋    | 113/200 [00:47<00:30,  2.81it/s] 57%|█████▋    | 114/200 [00:47<00:32,  2.65it/s] 57%|█████▊    | 115/200 [00:48<00:29,  2.88it/s] 58%|█████▊    | 116/200 [00:48<00:29,  2.86it/s] 58%|█████▊    | 117/200 [00:48<00:28,  2.86it/s] 59%|█████▉    | 118/200 [00:49<00:28,  2.85it/s] 60%|█████▉    | 119/200 [00:49<00:29,  2.79it/s] 60%|██████    | 120/200 [00:50<00:28,  2.79it/s] 60%|██████    | 121/200 [00:50<00:28,  2.81it/s] 61%|██████    | 122/200 [00:50<00:27,  2.79it/s] 62%|██████▏   | 123/200 [00:51<00:27,  2.82it/s] 62%|██████▏   | 124/200 [00:51<00:29,  2.57it/s] 62%|██████▎   | 125/200 [00:51<00:28,  2.66it/s] 63%|██████▎   | 126/200 [00:52<00:27,  2.71it/s] 64%|██████▎   | 127/200 [00:52<00:26,  2.74it/s] 64%|██████▍   | 128/200 [00:53<00:26,  2.76it/s] 64%|██████▍   | 129/200 [00:53<00:25,  2.77it/s] 65%|██████▌   | 130/200 [00:53<00:25,  2.75it/s] 66%|██████▌   | 131/200 [00:54<00:24,  2.79it/s] 66%|██████▌   | 132/200 [00:54<00:24,  2.82it/s] 66%|██████▋   | 133/200 [00:54<00:23,  2.80it/s] 67%|██████▋   | 134/200 [00:55<00:25,  2.58it/s] 68%|██████▊   | 135/200 [00:55<00:24,  2.67it/s] 68%|██████▊   | 136/200 [00:55<00:23,  2.71it/s] 68%|██████▊   | 137/200 [00:56<00:23,  2.73it/s] 69%|██████▉   | 138/200 [00:56<00:22,  2.74it/s] 70%|██████▉   | 139/200 [00:57<00:22,  2.72it/s] 70%|███████   | 140/200 [00:57<00:21,  2.77it/s] 70%|███████   | 141/200 [00:57<00:21,  2.80it/s] 71%|███████   | 142/200 [00:58<00:20,  2.81it/s] 72%|███████▏  | 143/200 [00:58<00:22,  2.54it/s] 72%|███████▏  | 144/200 [00:58<00:21,  2.62it/s] 72%|███████▎  | 145/200 [00:59<00:20,  2.65it/s] 73%|███████▎  | 146/200 [00:59<00:20,  2.66it/s] 74%|███████▎  | 147/200 [01:00<00:19,  2.67it/s] 74%|███████▍  | 148/200 [01:00<00:19,  2.73it/s] 74%|███████▍  | 149/200 [01:00<00:18,  2.75it/s] 75%|███████▌  | 150/200 [01:01<00:17,  2.80it/s] 76%|███████▌  | 151/200 [01:01<00:17,  2.78it/s] 76%|███████▌  | 152/200 [01:01<00:18,  2.64it/s] 76%|███████▋  | 153/200 [01:02<00:16,  2.86it/s] 77%|███████▋  | 154/200 [01:02<00:15,  2.89it/s] 78%|███████▊  | 155/200 [01:02<00:15,  2.90it/s] 78%|███████▊  | 156/200 [01:03<00:15,  2.87it/s] 78%|███████▊  | 157/200 [01:03<00:15,  2.83it/s] 79%|███████▉  | 158/200 [01:03<00:14,  2.82it/s] 80%|███████▉  | 159/200 [01:04<00:14,  2.85it/s] 80%|████████  | 160/200 [01:04<00:14,  2.81it/s] 80%|████████  | 161/200 [01:04<00:13,  2.84it/s] 81%|████████  | 162/200 [01:05<00:14,  2.60it/s] 82%|████████▏ | 163/200 [01:05<00:13,  2.67it/s] 82%|████████▏ | 164/200 [01:06<00:13,  2.69it/s] 82%|████████▎ | 165/200 [01:06<00:12,  2.75it/s] 83%|████████▎ | 166/200 [01:06<00:12,  2.79it/s] 84%|████████▎ | 167/200 [01:07<00:11,  2.80it/s] 84%|████████▍ | 168/200 [01:07<00:11,  2.80it/s] 84%|████████▍ | 169/200 [01:07<00:11,  2.77it/s] 85%|████████▌ | 170/200 [01:08<00:10,  2.77it/s] 86%|████████▌ | 171/200 [01:08<00:10,  2.81it/s] 86%|████████▌ | 172/200 [01:09<00:11,  2.53it/s] 86%|████████▋ | 173/200 [01:09<00:10,  2.61it/s] 87%|████████▋ | 174/200 [01:09<00:09,  2.65it/s] 88%|████████▊ | 175/200 [01:10<00:09,  2.71it/s] 88%|████████▊ | 176/200 [01:10<00:08,  2.74it/s] 88%|████████▊ | 177/200 [01:10<00:08,  2.79it/s] 89%|████████▉ | 178/200 [01:11<00:07,  2.80it/s] 90%|████████▉ | 179/200 [01:11<00:07,  2.84it/s] 90%|█████████ | 180/200 [01:11<00:07,  2.85it/s] 90%|█████████ | 181/200 [01:12<00:07,  2.59it/s] 91%|█████████ | 182/200 [01:12<00:06,  2.70it/s] 92%|█████████▏| 183/200 [01:13<00:06,  2.77it/s] 92%|█████████▏| 184/200 [01:13<00:05,  2.78it/s] 92%|█████████▎| 185/200 [01:13<00:05,  2.81it/s] 93%|█████████▎| 186/200 [01:14<00:04,  2.80it/s] 94%|█████████▎| 187/200 [01:14<00:04,  2.81it/s] 94%|█████████▍| 188/200 [01:14<00:04,  2.82it/s] 94%|█████████▍| 189/200 [01:15<00:03,  2.80it/s] 95%|█████████▌| 190/200 [01:15<00:03,  2.60it/s] 96%|█████████▌| 191/200 [01:15<00:03,  2.86it/s] 96%|█████████▌| 192/200 [01:16<00:02,  2.88it/s] 96%|█████████▋| 193/200 [01:16<00:02,  2.85it/s] 97%|█████████▋| 194/200 [01:16<00:02,  2.83it/s] 98%|█████████▊| 195/200 [01:17<00:01,  2.81it/s] 98%|█████████▊| 196/200 [01:17<00:01,  2.80it/s] 98%|█████████▊| 197/200 [01:18<00:01,  2.83it/s] 99%|█████████▉| 198/200 [01:18<00:00,  2.82it/s]100%|█████████▉| 199/200 [01:18<00:00,  2.82it/s]100%|██████████| 200/200 [01:19<00:00,  2.60it/s][INFO|trainer.py:3846] 2024-11-21 11:37:36,134 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:690] 2024-11-21 11:37:36,145 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:37:36,146 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:37:36,150 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:37:36,150 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:37:36,205 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [01:19<00:00,  2.60it/s]100%|██████████| 200/200 [01:19<00:00,  2.52it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:37:36,206 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1
+[INFO|configuration_utils.py:690] 2024-11-21 11:37:36,215 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:37:36,216 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:37:36,220 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:37:36,220 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lora-wikitext-2-raw-v1/special_tokens_map.json
+{'train_runtime': 79.2716, 'train_samples_per_second': 40.368, 'train_steps_per_second': 2.523, 'train_loss': 1.2236878967285156, 'epoch': 0.67}
+***** train metrics *****
+  epoch                    =     0.6667
+  total_flos               =   787292GF
+  train_loss               =     1.2237
+  train_runtime            = 0:01:19.27
+  train_samples            =       4798
+  train_samples_per_second =     40.368
+  train_steps_per_second   =      2.523
+11/21/2024 11:37:36 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:37:36,262 >> The following columns in the evaluation set don't have a corresponding argument in `PeftModelForCausalLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `PeftModelForCausalLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:37:36,263 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:37:36,263 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:37:36,263 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  5.99it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.34it/s] 25%|██▌       | 4/16 [00:00<00:03,  3.77it/s] 31%|███▏      | 5/16 [00:01<00:03,  3.54it/s] 38%|███▊      | 6/16 [00:01<00:02,  3.36it/s] 44%|████▍     | 7/16 [00:01<00:02,  3.30it/s] 50%|█████     | 8/16 [00:02<00:02,  3.24it/s] 56%|█████▋    | 9/16 [00:02<00:02,  3.18it/s] 62%|██████▎   | 10/16 [00:02<00:01,  3.17it/s] 69%|██████▉   | 11/16 [00:03<00:01,  2.86it/s] 75%|███████▌  | 12/16 [00:03<00:01,  2.92it/s] 81%|████████▏ | 13/16 [00:03<00:01,  2.95it/s] 88%|████████▊ | 14/16 [00:04<00:00,  2.94it/s] 94%|█████████▍| 15/16 [00:04<00:00,  3.03it/s]100%|██████████| 16/16 [00:04<00:00,  3.42it/s]100%|██████████| 16/16 [00:04<00:00,  3.24it/s]
+***** eval metrics *****
+  epoch                   =     0.6667
+  eval_accuracy           =     0.7257
+  eval_loss               =     1.2905
+  eval_runtime            = 0:00:05.29
+  eval_samples            =        496
+  eval_samples_per_second =      93.63
+  eval_steps_per_second   =       3.02
+  perplexity              =     3.6347
+------------------------------------
+LagEmbed: Training FacebookAI/roberta-base on wikitext (wikitext-2-raw-v1) with LagEmbed (in_channels=768, n_components=2, dof=3)
+11/21/2024 11:37:46 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:37:46 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.001,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/runs/Nov21_11-37-45_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:37:48 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:37:48 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:37:48 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:37:48 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:690] 2024-11-21 11:37:48,696 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:37:48,697 >> Model config RobertaConfig {
+  "_name_or_path": "/tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,709 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,710 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,710 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,710 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,710 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:37:48,710 >> loading file tokenizer_config.json
+[INFO|modeling_utils.py:3944] 2024-11-21 11:37:48,819 >> loading weights file /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:37:49,118 >> All model checkpoint weights were used when initializing LagRobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:37:49,119 >> All the weights of LagRobertaForMaskedLM were initialized from the model checkpoint at /tmp/test-mlm-roberta-base-base-wikitext-2-raw-v1.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use LagRobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-23a0271f2f8a2467.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-23a0271f2f8a2467.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-43d528b8bca91750.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-43d528b8bca91750.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c51129c3563daff2.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-c51129c3563daff2.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-fa441a58912bdf7f.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-fa441a58912bdf7f.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4e41ebc498141aa6.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-4e41ebc498141aa6.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-bebd6360cd21b34d.arrow
+11/21/2024 11:37:49 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-2-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-bebd6360cd21b34d.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:37:51,002 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:37:51,137 >> The following columns in the training set don't have a corresponding argument in `LagRobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `LagRobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:37:51,140 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:37:51,140 >>   Num examples = 4,798
+[INFO|trainer.py:2337] 2024-11-21 11:37:51,140 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:37:51,140 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:37:51,140 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:37:51,140 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:37:51,140 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:37:51,140 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:37:51,141 >>   Number of trainable parameters = 303,128
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<21:43,  6.55s/it]  1%|          | 2/200 [00:06<09:29,  2.88s/it]  2%|▏         | 3/200 [00:07<05:32,  1.69s/it]  2%|▏         | 4/200 [00:07<03:41,  1.13s/it]  2%|▎         | 5/200 [00:07<02:41,  1.21it/s]  3%|▎         | 6/200 [00:07<02:04,  1.56it/s]  4%|▎         | 7/200 [00:08<01:40,  1.91it/s]  4%|▍         | 8/200 [00:08<01:24,  2.26it/s]  4%|▍         | 9/200 [00:08<01:15,  2.55it/s]  5%|▌         | 10/200 [00:09<01:08,  2.79it/s]  6%|▌         | 11/200 [00:09<01:03,  2.97it/s]  6%|▌         | 12/200 [00:09<00:59,  3.17it/s]  6%|▋         | 13/200 [00:09<00:56,  3.28it/s]  7%|▋         | 14/200 [00:10<00:55,  3.36it/s]  8%|▊         | 15/200 [00:10<00:53,  3.43it/s]  8%|▊         | 16/200 [00:10<00:52,  3.52it/s]  8%|▊         | 17/200 [00:11<00:51,  3.59it/s]  9%|▉         | 18/200 [00:11<00:50,  3.60it/s] 10%|▉         | 19/200 [00:11<00:50,  3.58it/s] 10%|█         | 20/200 [00:11<00:49,  3.62it/s] 10%|█         | 21/200 [00:12<00:50,  3.54it/s] 11%|█         | 22/200 [00:12<00:49,  3.58it/s] 12%|█▏        | 23/200 [00:12<00:48,  3.62it/s] 12%|█▏        | 24/200 [00:12<00:49,  3.57it/s] 12%|█▎        | 25/200 [00:13<00:49,  3.56it/s] 13%|█▎        | 26/200 [00:13<00:49,  3.50it/s] 14%|█▎        | 27/200 [00:13<00:48,  3.55it/s] 14%|█▍        | 28/200 [00:14<00:47,  3.62it/s] 14%|█▍        | 29/200 [00:14<00:46,  3.67it/s] 15%|█▌        | 30/200 [00:14<00:52,  3.25it/s] 16%|█▌        | 31/200 [00:14<00:47,  3.59it/s] 16%|█▌        | 32/200 [00:15<00:43,  3.89it/s] 16%|█▋        | 33/200 [00:15<00:41,  4.04it/s] 17%|█▋        | 34/200 [00:15<00:39,  4.26it/s] 18%|█▊        | 35/200 [00:15<00:36,  4.47it/s] 18%|█▊        | 36/200 [00:15<00:35,  4.64it/s] 18%|█▊        | 37/200 [00:16<00:34,  4.73it/s] 19%|█▉        | 38/200 [00:16<00:33,  4.79it/s] 20%|█▉        | 39/200 [00:16<00:32,  4.88it/s] 20%|██        | 40/200 [00:16<00:33,  4.72it/s] 20%|██        | 41/200 [00:17<00:33,  4.79it/s] 21%|██        | 42/200 [00:17<00:32,  4.82it/s] 22%|██▏       | 43/200 [00:17<00:32,  4.89it/s] 22%|██▏       | 44/200 [00:17<00:32,  4.75it/s] 22%|██▎       | 45/200 [00:17<00:32,  4.83it/s] 23%|██▎       | 46/200 [00:18<00:31,  4.92it/s] 24%|██▎       | 47/200 [00:18<00:30,  4.95it/s] 24%|██▍       | 48/200 [00:18<00:32,  4.72it/s] 24%|██▍       | 49/200 [00:18<00:32,  4.61it/s] 25%|██▌       | 50/200 [00:18<00:34,  4.31it/s] 26%|██▌       | 51/200 [00:19<00:37,  4.01it/s] 26%|██▌       | 52/200 [00:19<00:38,  3.87it/s] 26%|██▋       | 53/200 [00:19<00:39,  3.76it/s] 27%|██▋       | 54/200 [00:20<00:39,  3.72it/s] 28%|██▊       | 55/200 [00:20<00:40,  3.61it/s] 28%|██▊       | 56/200 [00:20<00:40,  3.56it/s] 28%|██▊       | 57/200 [00:20<00:40,  3.51it/s] 29%|██▉       | 58/200 [00:21<00:40,  3.51it/s] 30%|██▉       | 59/200 [00:21<00:41,  3.44it/s] 30%|███       | 60/200 [00:21<00:44,  3.12it/s] 30%|███       | 61/200 [00:22<00:39,  3.52it/s] 31%|███       | 62/200 [00:22<00:35,  3.84it/s] 32%|███▏      | 63/200 [00:22<00:34,  4.02it/s] 32%|███▏      | 64/200 [00:22<00:31,  4.25it/s] 32%|███▎      | 65/200 [00:22<00:30,  4.44it/s] 33%|███▎      | 66/200 [00:23<00:29,  4.47it/s] 34%|███▎      | 67/200 [00:23<00:28,  4.60it/s] 34%|███▍      | 68/200 [00:23<00:27,  4.72it/s] 34%|███▍      | 69/200 [00:23<00:27,  4.77it/s] 35%|███▌      | 70/200 [00:24<00:27,  4.67it/s] 36%|███▌      | 71/200 [00:24<00:26,  4.79it/s] 36%|███▌      | 72/200 [00:24<00:26,  4.84it/s] 36%|███▋      | 73/200 [00:24<00:26,  4.87it/s] 37%|███▋      | 74/200 [00:24<00:26,  4.76it/s] 38%|███▊      | 75/200 [00:25<00:25,  4.82it/s] 38%|███▊      | 76/200 [00:25<00:25,  4.79it/s] 38%|███▊      | 77/200 [00:25<00:25,  4.86it/s] 39%|███▉      | 78/200 [00:25<00:24,  4.92it/s] 40%|███▉      | 79/200 [00:25<00:24,  4.93it/s] 40%|████      | 80/200 [00:26<00:24,  4.99it/s] 40%|████      | 81/200 [00:26<00:23,  5.02it/s] 41%|████      | 82/200 [00:26<00:23,  5.00it/s] 42%|████▏     | 83/200 [00:26<00:23,  4.99it/s] 42%|████▏     | 84/200 [00:26<00:23,  4.93it/s] 42%|████▎     | 85/200 [00:27<00:23,  4.97it/s] 43%|████▎     | 86/200 [00:27<00:23,  4.95it/s] 44%|████▎     | 87/200 [00:27<00:23,  4.85it/s] 44%|████▍     | 88/200 [00:27<00:22,  4.90it/s] 44%|████▍     | 89/200 [00:27<00:22,  4.92it/s] 45%|████▌     | 90/200 [00:28<00:25,  4.23it/s] 46%|████▌     | 91/200 [00:28<00:24,  4.42it/s] 46%|████▌     | 92/200 [00:28<00:23,  4.58it/s] 46%|████▋     | 93/200 [00:28<00:23,  4.65it/s] 47%|████▋     | 94/200 [00:29<00:22,  4.65it/s] 48%|████▊     | 95/200 [00:29<00:22,  4.77it/s] 48%|████▊     | 96/200 [00:29<00:22,  4.70it/s] 48%|████▊     | 97/200 [00:29<00:21,  4.81it/s] 49%|████▉     | 98/200 [00:29<00:20,  4.89it/s] 50%|████▉     | 99/200 [00:30<00:20,  4.89it/s] 50%|█████     | 100/200 [00:30<00:20,  4.97it/s] 50%|█████     | 101/200 [00:30<00:20,  4.95it/s] 51%|█████     | 102/200 [00:30<00:19,  5.00it/s] 52%|█████▏    | 103/200 [00:30<00:19,  4.90it/s] 52%|█████▏    | 104/200 [00:31<00:19,  4.93it/s] 52%|█████▎    | 105/200 [00:31<00:19,  4.96it/s] 53%|█████▎    | 106/200 [00:31<00:19,  4.94it/s] 54%|█████▎    | 107/200 [00:31<00:18,  4.96it/s] 54%|█████▍    | 108/200 [00:31<00:18,  4.94it/s] 55%|█████▍    | 109/200 [00:32<00:18,  4.80it/s] 55%|█████▌    | 110/200 [00:32<00:18,  4.81it/s] 56%|█████▌    | 111/200 [00:32<00:18,  4.89it/s] 56%|█████▌    | 112/200 [00:32<00:17,  4.91it/s] 56%|█████▋    | 113/200 [00:32<00:17,  4.94it/s] 57%|█████▋    | 114/200 [00:33<00:17,  4.87it/s] 57%|█████▊    | 115/200 [00:33<00:17,  4.75it/s] 58%|█████▊    | 116/200 [00:33<00:17,  4.83it/s] 58%|█████▊    | 117/200 [00:33<00:17,  4.82it/s] 59%|█████▉    | 118/200 [00:33<00:16,  4.89it/s] 60%|█████▉    | 119/200 [00:34<00:16,  4.90it/s] 60%|██████    | 120/200 [00:34<00:19,  4.17it/s] 60%|██████    | 121/200 [00:34<00:18,  4.32it/s] 61%|██████    | 122/200 [00:34<00:17,  4.45it/s] 62%|██████▏   | 123/200 [00:35<00:16,  4.53it/s] 62%|██████▏   | 124/200 [00:35<00:16,  4.68it/s] 62%|██████▎   | 125/200 [00:35<00:15,  4.81it/s] 63%|██████▎   | 126/200 [00:35<00:15,  4.89it/s] 64%|██████▎   | 127/200 [00:35<00:14,  4.94it/s] 64%|██████▍   | 128/200 [00:36<00:14,  4.94it/s] 64%|██████▍   | 129/200 [00:36<00:14,  4.97it/s] 65%|██████▌   | 130/200 [00:36<00:13,  5.01it/s] 66%|██████▌   | 131/200 [00:36<00:14,  4.90it/s] 66%|██████▌   | 132/200 [00:36<00:13,  4.93it/s] 66%|██████▋   | 133/200 [00:37<00:13,  4.95it/s] 67%|██████▋   | 134/200 [00:37<00:13,  4.96it/s] 68%|██████▊   | 135/200 [00:37<00:13,  4.99it/s] 68%|██████▊   | 136/200 [00:37<00:12,  5.00it/s] 68%|██████▊   | 137/200 [00:37<00:12,  4.94it/s] 69%|██████▉   | 138/200 [00:38<00:12,  4.95it/s] 70%|██████▉   | 139/200 [00:38<00:12,  4.95it/s] 70%|███████   | 140/200 [00:38<00:11,  5.02it/s] 70%|███████   | 141/200 [00:38<00:11,  5.02it/s] 71%|███████   | 142/200 [00:38<00:11,  5.05it/s] 72%|███████▏  | 143/200 [00:39<00:11,  5.01it/s] 72%|███████▏  | 144/200 [00:39<00:11,  4.98it/s] 72%|███████▎  | 145/200 [00:39<00:11,  4.98it/s] 73%|███████▎  | 146/200 [00:39<00:10,  5.01it/s] 74%|███████▎  | 147/200 [00:39<00:10,  5.01it/s] 74%|███████▍  | 148/200 [00:40<00:10,  4.98it/s] 74%|███████▍  | 149/200 [00:40<00:10,  4.94it/s] 75%|███████▌  | 150/200 [00:40<00:12,  4.15it/s] 76%|███████▌  | 151/200 [00:40<00:11,  4.27it/s] 76%|███████▌  | 152/200 [00:41<00:11,  4.35it/s] 76%|███████▋  | 153/200 [00:41<00:10,  4.48it/s] 77%|███████▋  | 154/200 [00:41<00:10,  4.54it/s] 78%|███████▊  | 155/200 [00:41<00:09,  4.53it/s] 78%|███████▊  | 156/200 [00:41<00:09,  4.64it/s] 78%|███████▊  | 157/200 [00:42<00:09,  4.72it/s] 79%|███████▉  | 158/200 [00:42<00:08,  4.80it/s] 80%|███████▉  | 159/200 [00:42<00:08,  4.84it/s] 80%|████████  | 160/200 [00:42<00:08,  4.76it/s] 80%|████████  | 161/200 [00:42<00:08,  4.81it/s] 81%|████████  | 162/200 [00:43<00:07,  4.88it/s] 82%|████████▏ | 163/200 [00:43<00:07,  4.90it/s] 82%|████████▏ | 164/200 [00:43<00:07,  4.96it/s] 82%|████████▎ | 165/200 [00:43<00:07,  4.93it/s] 83%|████████▎ | 166/200 [00:43<00:06,  4.88it/s] 84%|████████▎ | 167/200 [00:44<00:06,  4.93it/s] 84%|████████▍ | 168/200 [00:44<00:06,  5.01it/s] 84%|████████▍ | 169/200 [00:44<00:06,  5.01it/s] 85%|████████▌ | 170/200 [00:44<00:06,  4.90it/s] 86%|████████▌ | 171/200 [00:44<00:05,  4.98it/s] 86%|████████▌ | 172/200 [00:45<00:05,  4.95it/s] 86%|████████▋ | 173/200 [00:45<00:05,  4.96it/s] 87%|████████▋ | 174/200 [00:45<00:05,  4.92it/s] 88%|████████▊ | 175/200 [00:45<00:05,  4.96it/s] 88%|████████▊ | 176/200 [00:45<00:04,  5.03it/s] 88%|████████▊ | 177/200 [00:46<00:04,  5.02it/s] 89%|████████▉ | 178/200 [00:46<00:04,  5.00it/s] 90%|████████▉ | 179/200 [00:46<00:04,  5.00it/s] 90%|█████████ | 180/200 [00:46<00:04,  4.23it/s] 90%|█████████ | 181/200 [00:47<00:04,  4.42it/s] 91%|█████████ | 182/200 [00:47<00:03,  4.55it/s] 92%|█████████▏| 183/200 [00:47<00:03,  4.58it/s] 92%|█████████▏| 184/200 [00:47<00:03,  4.64it/s] 92%|█████████▎| 185/200 [00:47<00:03,  4.73it/s] 93%|█████████▎| 186/200 [00:48<00:02,  4.81it/s] 94%|█████████▎| 187/200 [00:48<00:02,  4.89it/s] 94%|█████████▍| 188/200 [00:48<00:02,  4.93it/s] 94%|█████████▍| 189/200 [00:48<00:02,  4.93it/s] 95%|█████████▌| 190/200 [00:48<00:02,  4.89it/s] 96%|█████████▌| 191/200 [00:49<00:01,  4.94it/s] 96%|█████████▌| 192/200 [00:49<00:01,  4.95it/s] 96%|█████████▋| 193/200 [00:49<00:01,  4.93it/s] 97%|█████████▋| 194/200 [00:49<00:01,  4.97it/s] 98%|█████████▊| 195/200 [00:49<00:01,  4.93it/s] 98%|█████████▊| 196/200 [00:50<00:00,  4.96it/s] 98%|█████████▊| 197/200 [00:50<00:00,  4.82it/s] 99%|█████████▉| 198/200 [00:50<00:00,  4.68it/s]100%|█████████▉| 199/200 [00:50<00:00,  4.79it/s]100%|██████████| 200/200 [00:50<00:00,  4.86it/s][INFO|trainer.py:3846] 2024-11-21 11:38:42,090 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:416] 2024-11-21 11:38:42,092 >> Configuration saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/checkpoint-200/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:38:43,067 >> Model weights saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/checkpoint-200/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:38:43,068 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:38:43,068 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:38:43,120 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [00:51<00:00,  4.86it/s]100%|██████████| 200/200 [00:51<00:00,  3.85it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:38:43,121 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1
+[INFO|configuration_utils.py:416] 2024-11-21 11:38:43,122 >> Configuration saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:38:44,164 >> Model weights saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:38:44,165 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:38:44,165 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-2-raw-v1/special_tokens_map.json
+{'train_runtime': 51.9793, 'train_samples_per_second': 61.563, 'train_steps_per_second': 3.848, 'train_loss': 1.0934358215332032, 'epoch': 0.67}
+***** train metrics *****
+  epoch                    =     0.6667
+  total_flos               =   787367GF
+  train_loss               =     1.0934
+  train_runtime            = 0:00:51.97
+  train_samples            =       4798
+  train_samples_per_second =     61.563
+  train_steps_per_second   =      3.848
+11/21/2024 11:38:44 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:38:44,211 >> The following columns in the evaluation set don't have a corresponding argument in `LagRobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `LagRobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:38:44,213 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:38:44,213 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:38:44,213 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  6.44it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.58it/s] 25%|██▌       | 4/16 [00:00<00:03,  3.91it/s] 31%|███▏      | 5/16 [00:01<00:03,  3.65it/s] 38%|███▊      | 6/16 [00:01<00:02,  3.50it/s] 44%|████▍     | 7/16 [00:01<00:02,  3.40it/s] 50%|█████     | 8/16 [00:02<00:02,  3.35it/s] 56%|█████▋    | 9/16 [00:02<00:02,  3.29it/s] 62%|██████▎   | 10/16 [00:02<00:01,  3.27it/s] 69%|██████▉   | 11/16 [00:03<00:01,  3.21it/s] 75%|███████▌  | 12/16 [00:03<00:01,  3.18it/s] 81%|████████▏ | 13/16 [00:03<00:00,  3.15it/s] 88%|████████▊ | 14/16 [00:04<00:00,  3.13it/s] 94%|█████████▍| 15/16 [00:04<00:00,  2.93it/s]100%|██████████| 16/16 [00:04<00:00,  3.39it/s]100%|██████████| 16/16 [00:04<00:00,  3.37it/s]
+***** eval metrics *****
+  epoch                   =     0.6667
+  eval_accuracy           =     0.7257
+  eval_loss               =     1.2905
+  eval_runtime            = 0:00:05.10
+  eval_samples            =        496
+  eval_samples_per_second =     97.227
+  eval_steps_per_second   =      3.136
+  perplexity              =     3.6346
+------------------------------------
+Baseline: Training FacebookAI/roberta-base on wikitext (wikitext-103-raw-v1) from scratch
+11/21/2024 11:38:54 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:38:54 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=5e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/runs/Nov21_11-38-53_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:39:00 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:39:00 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:39:00 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:39:00 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:692] 2024-11-21 11:39:00,339 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:39:00,340 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|configuration_utils.py:692] 2024-11-21 11:39:00,380 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:39:00,382 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file vocab.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/vocab.json
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file merges.txt from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/merges.txt
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file tokenizer.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/tokenizer.json
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2024] 2024-11-21 11:39:00,402 >> loading file tokenizer_config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/tokenizer_config.json
+[INFO|configuration_utils.py:692] 2024-11-21 11:39:00,402 >> loading configuration file config.json from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:39:00,403 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|modeling_utils.py:3947] 2024-11-21 11:39:00,559 >> loading weights file model.safetensors from cache at /home/cs/.cache/huggingface/hub/models--FacebookAI--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:39:00,810 >> All model checkpoint weights were used when initializing RobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:39:00,811 >> All the weights of RobertaForMaskedLM were initialized from the model checkpoint at FacebookAI/roberta-base.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use RobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-96dbe0d0e60b4626.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-96dbe0d0e60b4626.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-0b3e6d187e83cc6b.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-0b3e6d187e83cc6b.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-1a7c2fcd7e0b07aa.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-1a7c2fcd7e0b07aa.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-25c6d14e96e6a27b.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-25c6d14e96e6a27b.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b87dbf6bfc5f2f1f.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b87dbf6bfc5f2f1f.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-1172f938c25921a5.arrow
+11/21/2024 11:39:00 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-1172f938c25921a5.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:39:02,690 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:39:02,809 >> The following columns in the training set don't have a corresponding argument in `RobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `RobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:39:02,815 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:39:02,815 >>   Num examples = 236,453
+[INFO|trainer.py:2337] 2024-11-21 11:39:02,815 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:39:02,815 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:39:02,815 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:39:02,815 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:39:02,815 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:39:02,815 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:39:02,815 >>   Number of trainable parameters = 124,697,433
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<22:01,  6.64s/it]  1%|          | 2/200 [00:07<09:43,  2.95s/it]  2%|▏         | 3/200 [00:07<05:48,  1.77s/it]  2%|▏         | 4/200 [00:07<03:57,  1.21s/it]  2%|▎         | 5/200 [00:08<02:57,  1.10it/s]  3%|▎         | 6/200 [00:08<02:20,  1.39it/s]  4%|▎         | 7/200 [00:08<01:56,  1.66it/s]  4%|▍         | 8/200 [00:09<01:41,  1.89it/s]  4%|▍         | 9/200 [00:09<01:30,  2.10it/s]  5%|▌         | 10/200 [00:09<01:23,  2.27it/s]  6%|▌         | 11/200 [00:10<01:18,  2.42it/s]  6%|▌         | 12/200 [00:10<01:14,  2.51it/s]  6%|▋         | 13/200 [00:10<01:13,  2.55it/s]  7%|▋         | 14/200 [00:11<01:11,  2.60it/s]  8%|▊         | 15/200 [00:11<01:09,  2.65it/s]  8%|▊         | 16/200 [00:12<01:08,  2.68it/s]  8%|▊         | 17/200 [00:12<01:07,  2.70it/s]  9%|▉         | 18/200 [00:12<01:07,  2.69it/s] 10%|▉         | 19/200 [00:13<01:06,  2.71it/s] 10%|█         | 20/200 [00:13<01:06,  2.71it/s] 10%|█         | 21/200 [00:13<01:05,  2.73it/s] 11%|█         | 22/200 [00:14<01:04,  2.74it/s] 12%|█▏        | 23/200 [00:14<01:04,  2.74it/s] 12%|█▏        | 24/200 [00:15<01:04,  2.73it/s] 12%|█▎        | 25/200 [00:15<01:09,  2.52it/s] 13%|█▎        | 26/200 [00:15<01:07,  2.60it/s] 14%|█▎        | 27/200 [00:16<01:05,  2.65it/s] 14%|█▍        | 28/200 [00:16<01:04,  2.67it/s] 14%|█▍        | 29/200 [00:16<01:03,  2.70it/s] 15%|█▌        | 30/200 [00:17<01:02,  2.73it/s] 16%|█▌        | 31/200 [00:17<01:02,  2.72it/s] 16%|█▌        | 32/200 [00:18<01:01,  2.75it/s] 16%|█▋        | 33/200 [00:18<01:00,  2.76it/s] 17%|█▋        | 34/200 [00:18<01:00,  2.73it/s] 18%|█▊        | 35/200 [00:19<01:00,  2.73it/s] 18%|█▊        | 36/200 [00:19<01:00,  2.73it/s] 18%|█▊        | 37/200 [00:19<00:59,  2.74it/s] 19%|█▉        | 38/200 [00:20<00:59,  2.74it/s] 20%|█▉        | 39/200 [00:20<00:58,  2.74it/s] 20%|██        | 40/200 [00:20<00:58,  2.76it/s] 20%|██        | 41/200 [00:21<00:57,  2.76it/s] 21%|██        | 42/200 [00:21<00:57,  2.72it/s] 22%|██▏       | 43/200 [00:22<00:57,  2.74it/s] 22%|██▏       | 44/200 [00:22<00:57,  2.73it/s] 22%|██▎       | 45/200 [00:22<00:56,  2.74it/s] 23%|██▎       | 46/200 [00:23<00:56,  2.75it/s] 24%|██▎       | 47/200 [00:23<00:55,  2.76it/s] 24%|██▍       | 48/200 [00:23<00:55,  2.76it/s] 24%|██▍       | 49/200 [00:24<00:54,  2.75it/s] 25%|██▌       | 50/200 [00:24<00:54,  2.74it/s] 26%|██▌       | 51/200 [00:25<01:01,  2.43it/s] 26%|██▌       | 52/200 [00:25<00:58,  2.53it/s] 26%|██▋       | 53/200 [00:25<00:56,  2.59it/s] 27%|██▋       | 54/200 [00:26<00:55,  2.64it/s] 28%|██▊       | 55/200 [00:26<00:54,  2.68it/s] 28%|██▊       | 56/200 [00:26<00:52,  2.72it/s] 28%|██▊       | 57/200 [00:27<00:52,  2.71it/s] 29%|██▉       | 58/200 [00:27<00:52,  2.72it/s] 30%|██▉       | 59/200 [00:27<00:51,  2.73it/s] 30%|███       | 60/200 [00:28<00:51,  2.74it/s] 30%|███       | 61/200 [00:28<00:50,  2.74it/s] 31%|███       | 62/200 [00:29<00:50,  2.75it/s] 32%|███▏      | 63/200 [00:29<00:49,  2.74it/s] 32%|███▏      | 64/200 [00:29<00:49,  2.75it/s] 32%|███▎      | 65/200 [00:30<00:48,  2.76it/s] 33%|███▎      | 66/200 [00:30<00:48,  2.76it/s] 34%|███▎      | 67/200 [00:30<00:48,  2.75it/s] 34%|███▍      | 68/200 [00:31<00:48,  2.75it/s] 34%|███▍      | 69/200 [00:31<00:47,  2.74it/s] 35%|███▌      | 70/200 [00:31<00:47,  2.76it/s] 36%|███▌      | 71/200 [00:32<00:47,  2.74it/s] 36%|███▌      | 72/200 [00:32<00:46,  2.75it/s] 36%|███▋      | 73/200 [00:33<00:46,  2.73it/s] 37%|███▋      | 74/200 [00:33<00:46,  2.73it/s] 38%|███▊      | 75/200 [00:33<00:46,  2.71it/s] 38%|███▊      | 76/200 [00:34<00:45,  2.74it/s] 38%|███▊      | 77/200 [00:34<00:45,  2.73it/s] 39%|███▉      | 78/200 [00:34<00:44,  2.72it/s] 40%|███▉      | 79/200 [00:35<00:44,  2.73it/s] 40%|████      | 80/200 [00:35<00:44,  2.72it/s] 40%|████      | 81/200 [00:36<00:43,  2.72it/s] 41%|████      | 82/200 [00:36<00:46,  2.52it/s] 42%|████▏     | 83/200 [00:36<00:45,  2.59it/s] 42%|████▏     | 84/200 [00:37<00:43,  2.64it/s] 42%|████▎     | 85/200 [00:37<00:43,  2.65it/s] 43%|████▎     | 86/200 [00:37<00:42,  2.69it/s] 44%|████▎     | 87/200 [00:38<00:42,  2.68it/s] 44%|████▍     | 88/200 [00:38<00:41,  2.72it/s] 44%|████▍     | 89/200 [00:39<00:40,  2.72it/s] 45%|████▌     | 90/200 [00:39<00:40,  2.74it/s] 46%|████▌     | 91/200 [00:39<00:39,  2.74it/s] 46%|████▌     | 92/200 [00:40<00:39,  2.74it/s] 46%|████▋     | 93/200 [00:40<00:38,  2.75it/s] 47%|████▋     | 94/200 [00:40<00:38,  2.74it/s] 48%|████▊     | 95/200 [00:41<00:38,  2.73it/s] 48%|████▊     | 96/200 [00:41<00:37,  2.74it/s] 48%|████▊     | 97/200 [00:41<00:37,  2.74it/s] 49%|████▉     | 98/200 [00:42<00:37,  2.74it/s] 50%|████▉     | 99/200 [00:42<00:37,  2.72it/s] 50%|█████     | 100/200 [00:43<00:36,  2.71it/s] 50%|█████     | 101/200 [00:43<00:36,  2.72it/s] 51%|█████     | 102/200 [00:43<00:35,  2.73it/s] 52%|█████▏    | 103/200 [00:44<00:35,  2.74it/s] 52%|█████▏    | 104/200 [00:44<00:35,  2.74it/s] 52%|█████▎    | 105/200 [00:44<00:34,  2.73it/s] 53%|█████▎    | 106/200 [00:45<00:34,  2.75it/s] 54%|█████▎    | 107/200 [00:45<00:33,  2.75it/s] 54%|█████▍    | 108/200 [00:46<00:35,  2.56it/s] 55%|█████▍    | 109/200 [00:46<00:34,  2.62it/s] 55%|█████▌    | 110/200 [00:46<00:33,  2.68it/s] 56%|█████▌    | 111/200 [00:47<00:32,  2.72it/s] 56%|█████▌    | 112/200 [00:47<00:32,  2.73it/s] 56%|█████▋    | 113/200 [00:47<00:31,  2.74it/s] 57%|█████▋    | 114/200 [00:48<00:31,  2.75it/s] 57%|█████▊    | 115/200 [00:48<00:30,  2.76it/s] 58%|█████▊    | 116/200 [00:48<00:30,  2.76it/s] 58%|█████▊    | 117/200 [00:49<00:30,  2.74it/s] 59%|█████▉    | 118/200 [00:49<00:29,  2.74it/s] 60%|█████▉    | 119/200 [00:50<00:29,  2.74it/s] 60%|██████    | 120/200 [00:50<00:29,  2.74it/s] 60%|██████    | 121/200 [00:50<00:28,  2.74it/s] 61%|██████    | 122/200 [00:51<00:28,  2.77it/s] 62%|██████▏   | 123/200 [00:51<00:27,  2.78it/s] 62%|██████▏   | 124/200 [00:51<00:27,  2.77it/s] 62%|██████▎   | 125/200 [00:52<00:27,  2.77it/s] 63%|██████▎   | 126/200 [00:52<00:26,  2.74it/s] 64%|██████▎   | 127/200 [00:52<00:26,  2.75it/s] 64%|██████▍   | 128/200 [00:53<00:26,  2.74it/s] 64%|██████▍   | 129/200 [00:53<00:25,  2.75it/s] 65%|██████▌   | 130/200 [00:54<00:25,  2.74it/s] 66%|██████▌   | 131/200 [00:54<00:25,  2.73it/s] 66%|██████▌   | 132/200 [00:54<00:24,  2.74it/s] 66%|██████▋   | 133/200 [00:55<00:24,  2.73it/s] 67%|██████▋   | 134/200 [00:55<00:24,  2.74it/s] 68%|██████▊   | 135/200 [00:55<00:25,  2.54it/s] 68%|██████▊   | 136/200 [00:56<00:24,  2.63it/s] 68%|██████▊   | 137/200 [00:56<00:23,  2.65it/s] 69%|██████▉   | 138/200 [00:57<00:23,  2.68it/s] 70%|██████▉   | 139/200 [00:57<00:22,  2.67it/s] 70%|███████   | 140/200 [00:57<00:22,  2.70it/s] 70%|███████   | 141/200 [00:58<00:21,  2.72it/s] 71%|███████   | 142/200 [00:58<00:21,  2.74it/s] 72%|███████▏  | 143/200 [00:58<00:20,  2.76it/s] 72%|███████▏  | 144/200 [00:59<00:20,  2.76it/s] 72%|███████▎  | 145/200 [00:59<00:19,  2.75it/s] 73%|███████▎  | 146/200 [00:59<00:19,  2.73it/s] 74%|███████▎  | 147/200 [01:00<00:19,  2.74it/s] 74%|███████▍  | 148/200 [01:00<00:18,  2.75it/s] 74%|███████▍  | 149/200 [01:01<00:18,  2.72it/s] 75%|███████▌  | 150/200 [01:01<00:18,  2.73it/s] 76%|███████▌  | 151/200 [01:01<00:18,  2.72it/s] 76%|███████▌  | 152/200 [01:02<00:17,  2.72it/s] 76%|███████▋  | 153/200 [01:02<00:17,  2.74it/s] 77%|███████▋  | 154/200 [01:02<00:16,  2.71it/s] 78%|███████▊  | 155/200 [01:03<00:16,  2.74it/s] 78%|███████▊  | 156/200 [01:03<00:16,  2.73it/s] 78%|███████▊  | 157/200 [01:04<00:15,  2.71it/s] 79%|███████▉  | 158/200 [01:04<00:15,  2.73it/s] 80%|███████▉  | 159/200 [01:04<00:15,  2.72it/s] 80%|████████  | 160/200 [01:05<00:14,  2.74it/s] 80%|████████  | 161/200 [01:05<00:14,  2.74it/s] 81%|████████  | 162/200 [01:05<00:14,  2.56it/s] 82%|████████▏ | 163/200 [01:06<00:14,  2.63it/s] 82%|████████▏ | 164/200 [01:06<00:13,  2.67it/s] 82%|████████▎ | 165/200 [01:07<00:13,  2.66it/s] 83%|████████▎ | 166/200 [01:07<00:12,  2.70it/s] 84%|████████▎ | 167/200 [01:07<00:12,  2.72it/s] 84%|████████▍ | 168/200 [01:08<00:11,  2.74it/s] 84%|████████▍ | 169/200 [01:08<00:11,  2.72it/s] 85%|████████▌ | 170/200 [01:08<00:11,  2.71it/s] 86%|████████▌ | 171/200 [01:09<00:10,  2.72it/s] 86%|████████▌ | 172/200 [01:09<00:10,  2.73it/s] 86%|████████▋ | 173/200 [01:09<00:09,  2.73it/s] 87%|████████▋ | 174/200 [01:10<00:09,  2.74it/s] 88%|████████▊ | 175/200 [01:10<00:09,  2.73it/s] 88%|████████▊ | 176/200 [01:11<00:08,  2.73it/s] 88%|████████▊ | 177/200 [01:11<00:08,  2.73it/s] 89%|████████▉ | 178/200 [01:11<00:08,  2.73it/s] 90%|████████▉ | 179/200 [01:12<00:07,  2.73it/s] 90%|█████████ | 180/200 [01:12<00:07,  2.72it/s] 90%|█████████ | 181/200 [01:12<00:07,  2.70it/s] 91%|█████████ | 182/200 [01:13<00:06,  2.72it/s] 92%|█████████▏| 183/200 [01:13<00:06,  2.70it/s] 92%|█████████▏| 184/200 [01:13<00:05,  2.71it/s] 92%|█████████▎| 185/200 [01:14<00:05,  2.74it/s] 93%|█████████▎| 186/200 [01:14<00:05,  2.72it/s] 94%|█████████▎| 187/200 [01:15<00:04,  2.72it/s] 94%|█████████▍| 188/200 [01:15<00:04,  2.55it/s] 94%|█████████▍| 189/200 [01:15<00:04,  2.60it/s] 95%|█████████▌| 190/200 [01:16<00:03,  2.65it/s] 96%|█████████▌| 191/200 [01:16<00:03,  2.67it/s] 96%|█████████▌| 192/200 [01:16<00:02,  2.71it/s] 96%|█████████▋| 193/200 [01:17<00:02,  2.71it/s] 97%|█████████▋| 194/200 [01:17<00:02,  2.71it/s] 98%|█████████▊| 195/200 [01:18<00:01,  2.71it/s] 98%|█████████▊| 196/200 [01:18<00:01,  2.72it/s] 98%|█████████▊| 197/200 [01:18<00:01,  2.71it/s] 99%|█████████▉| 198/200 [01:19<00:00,  2.69it/s]100%|█████████▉| 199/200 [01:19<00:00,  2.70it/s]100%|██████████| 200/200 [01:19<00:00,  2.73it/s][INFO|trainer.py:3846] 2024-11-21 11:40:22,733 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:416] 2024-11-21 11:40:22,734 >> Configuration saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/checkpoint-200/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:40:23,746 >> Model weights saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/checkpoint-200/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:40:23,748 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:40:23,748 >> Special tokens file saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:40:24,940 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [01:22<00:00,  2.73it/s]100%|██████████| 200/200 [01:22<00:00,  2.44it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:40:24,943 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1
+[INFO|configuration_utils.py:416] 2024-11-21 11:40:24,945 >> Configuration saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:40:25,945 >> Model weights saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:40:25,946 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:40:25,947 >> Special tokens file saved in /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/special_tokens_map.json
+{'train_runtime': 82.1253, 'train_samples_per_second': 38.965, 'train_steps_per_second': 2.435, 'train_loss': 1.4598658752441407, 'epoch': 0.01}
+***** train metrics *****
+  epoch                    =     0.0135
+  total_flos               =   784592GF
+  train_loss               =     1.4599
+  train_runtime            = 0:01:22.12
+  train_samples            =     236453
+  train_samples_per_second =     38.965
+  train_steps_per_second   =      2.435
+11/21/2024 11:40:25 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:40:25,990 >> The following columns in the evaluation set don't have a corresponding argument in `RobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `RobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:40:25,992 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:40:25,992 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:40:25,992 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  6.51it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.63it/s] 25%|██▌       | 4/16 [00:00<00:03,  4.00it/s] 31%|███▏      | 5/16 [00:01<00:02,  3.72it/s] 38%|███▊      | 6/16 [00:01<00:02,  3.53it/s] 44%|████▍     | 7/16 [00:01<00:02,  3.46it/s] 50%|█████     | 8/16 [00:02<00:02,  3.41it/s] 56%|█████▋    | 9/16 [00:02<00:02,  3.37it/s] 62%|██████▎   | 10/16 [00:02<00:01,  3.35it/s] 69%|██████▉   | 11/16 [00:03<00:01,  3.34it/s] 75%|███████▌  | 12/16 [00:03<00:01,  3.33it/s] 81%|████████▏ | 13/16 [00:03<00:00,  3.32it/s] 88%|████████▊ | 14/16 [00:03<00:00,  3.31it/s] 94%|█████████▍| 15/16 [00:04<00:00,  3.33it/s]100%|██████████| 16/16 [00:04<00:00,  3.78it/s]100%|██████████| 16/16 [00:04<00:00,  3.53it/s]
+***** eval metrics *****
+  epoch                   =     0.0135
+  eval_accuracy           =     0.7252
+  eval_loss               =     1.2924
+  eval_runtime            = 0:00:04.87
+  eval_samples            =        496
+  eval_samples_per_second =    101.764
+  eval_steps_per_second   =      3.283
+  perplexity              =     3.6415
+------------------------------------
+LoRA: Fine-tuning FacebookAI/roberta-base on wikitext (wikitext-103-raw-v1) using baseline model
+11/21/2024 11:40:36 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:40:36 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=1e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/runs/Nov21_11-40-34_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:40:38 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:40:38 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:40:38 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:40:38 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:690] 2024-11-21 11:40:38,564 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:40:38,566 >> Model config RobertaConfig {
+  "_name_or_path": "/tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:40:38,580 >> loading file tokenizer_config.json
+[INFO|modeling_utils.py:3944] 2024-11-21 11:40:38,688 >> loading weights file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:40:38,922 >> All model checkpoint weights were used when initializing RobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:40:38,922 >> All the weights of RobertaForMaskedLM were initialized from the model checkpoint at /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use RobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f4ce6a20ae8d1053.arrow
+11/21/2024 11:40:38 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f4ce6a20ae8d1053.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-9e8e70325b3b9876.arrow
+11/21/2024 11:40:39 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-9e8e70325b3b9876.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b0fa7db7898df124.arrow
+11/21/2024 11:40:39 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b0fa7db7898df124.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-3dfd0231447c4604.arrow
+11/21/2024 11:40:39 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-3dfd0231447c4604.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-13b2f9ee3fe05bad.arrow
+11/21/2024 11:40:39 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-13b2f9ee3fe05bad.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-5c8465906987c189.arrow
+11/21/2024 11:40:39 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-5c8465906987c189.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:40:40,647 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:40:40,770 >> The following columns in the training set don't have a corresponding argument in `PeftModelForCausalLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `PeftModelForCausalLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:40:40,776 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:40:40,776 >>   Num examples = 236,453
+[INFO|trainer.py:2337] 2024-11-21 11:40:40,776 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:40:40,776 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:40:40,776 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:40:40,776 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:40:40,776 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:40:40,776 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:40:40,777 >>   Number of trainable parameters = 294,912
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<21:57,  6.62s/it]  1%|          | 2/200 [00:06<09:40,  2.93s/it]  2%|▏         | 3/200 [00:07<05:46,  1.76s/it]  2%|▏         | 4/200 [00:07<03:56,  1.21s/it]  2%|▎         | 5/200 [00:08<02:54,  1.12it/s]  3%|▎         | 6/200 [00:08<02:17,  1.41it/s]  4%|▎         | 7/200 [00:08<01:55,  1.68it/s]  4%|▍         | 8/200 [00:09<01:45,  1.81it/s]  4%|▍         | 9/200 [00:09<01:33,  2.05it/s]  5%|▌         | 10/200 [00:09<01:24,  2.24it/s]  6%|▌         | 11/200 [00:10<01:19,  2.38it/s]  6%|▌         | 12/200 [00:10<01:14,  2.52it/s]  6%|▋         | 13/200 [00:10<01:12,  2.59it/s]  7%|▋         | 14/200 [00:11<01:10,  2.64it/s]  8%|▊         | 15/200 [00:11<01:08,  2.69it/s]  8%|▊         | 16/200 [00:12<01:08,  2.70it/s]  8%|▊         | 17/200 [00:12<01:07,  2.72it/s]  9%|▉         | 18/200 [00:12<01:13,  2.49it/s] 10%|▉         | 19/200 [00:13<01:09,  2.60it/s] 10%|█         | 20/200 [00:13<01:06,  2.69it/s] 10%|█         | 21/200 [00:13<01:05,  2.73it/s] 11%|█         | 22/200 [00:14<01:05,  2.74it/s] 12%|█▏        | 23/200 [00:14<01:03,  2.78it/s] 12%|█▏        | 24/200 [00:14<01:02,  2.81it/s] 12%|█▎        | 25/200 [00:15<01:01,  2.83it/s] 13%|█▎        | 26/200 [00:15<01:01,  2.84it/s] 14%|█▎        | 27/200 [00:16<01:01,  2.83it/s] 14%|█▍        | 28/200 [00:16<01:00,  2.83it/s] 14%|█▍        | 29/200 [00:16<01:05,  2.59it/s] 15%|█▌        | 30/200 [00:17<01:03,  2.68it/s] 16%|█▌        | 31/200 [00:17<01:02,  2.71it/s] 16%|█▌        | 32/200 [00:17<01:00,  2.77it/s] 16%|█▋        | 33/200 [00:18<00:59,  2.81it/s] 17%|█▋        | 34/200 [00:18<00:58,  2.82it/s] 18%|█▊        | 35/200 [00:18<00:58,  2.83it/s] 18%|█▊        | 36/200 [00:19<00:57,  2.86it/s] 18%|█▊        | 37/200 [00:19<00:57,  2.86it/s] 19%|█▉        | 38/200 [00:19<00:56,  2.85it/s] 20%|█▉        | 39/200 [00:20<01:01,  2.60it/s] 20%|██        | 40/200 [00:20<00:59,  2.69it/s] 20%|██        | 41/200 [00:21<00:58,  2.73it/s] 21%|██        | 42/200 [00:21<00:57,  2.73it/s] 22%|██▏       | 43/200 [00:21<00:56,  2.76it/s] 22%|██▏       | 44/200 [00:22<00:55,  2.79it/s] 22%|██▎       | 45/200 [00:22<00:55,  2.78it/s] 23%|██▎       | 46/200 [00:22<00:55,  2.79it/s] 24%|██▎       | 47/200 [00:23<00:54,  2.79it/s] 24%|██▍       | 48/200 [00:23<01:00,  2.53it/s] 24%|██▍       | 49/200 [00:24<00:58,  2.60it/s] 25%|██▌       | 50/200 [00:24<00:56,  2.64it/s] 26%|██▌       | 51/200 [00:24<00:55,  2.69it/s] 26%|██▌       | 52/200 [00:25<00:54,  2.74it/s] 26%|██▋       | 53/200 [00:25<00:53,  2.77it/s] 27%|██▋       | 54/200 [00:25<00:52,  2.79it/s] 28%|██▊       | 55/200 [00:26<00:52,  2.79it/s] 28%|██▊       | 56/200 [00:26<00:51,  2.79it/s] 28%|██▊       | 57/200 [00:26<00:51,  2.78it/s] 29%|██▉       | 58/200 [00:27<00:56,  2.52it/s] 30%|██▉       | 59/200 [00:27<00:53,  2.62it/s] 30%|███       | 60/200 [00:28<00:52,  2.67it/s] 30%|███       | 61/200 [00:28<00:51,  2.69it/s] 31%|███       | 62/200 [00:28<00:50,  2.73it/s] 32%|███▏      | 63/200 [00:29<00:49,  2.78it/s] 32%|███▏      | 64/200 [00:29<00:48,  2.81it/s] 32%|███▎      | 65/200 [00:29<00:48,  2.81it/s] 33%|███▎      | 66/200 [00:30<00:47,  2.82it/s] 34%|███▎      | 67/200 [00:30<00:52,  2.54it/s] 34%|███▍      | 68/200 [00:31<00:50,  2.61it/s] 34%|███▍      | 69/200 [00:31<00:49,  2.67it/s] 35%|███▌      | 70/200 [00:31<00:47,  2.71it/s] 36%|███▌      | 71/200 [00:32<00:46,  2.76it/s] 36%|███▌      | 72/200 [00:32<00:45,  2.81it/s] 36%|███▋      | 73/200 [00:32<00:44,  2.83it/s] 37%|███▋      | 74/200 [00:33<00:44,  2.83it/s] 38%|███▊      | 75/200 [00:33<00:43,  2.85it/s] 38%|███▊      | 76/200 [00:33<00:43,  2.82it/s] 38%|███▊      | 77/200 [00:34<00:43,  2.82it/s] 39%|███▉      | 78/200 [00:34<00:47,  2.59it/s] 40%|███▉      | 79/200 [00:35<00:45,  2.66it/s] 40%|████      | 80/200 [00:35<00:44,  2.71it/s] 40%|████      | 81/200 [00:35<00:43,  2.76it/s] 41%|████      | 82/200 [00:36<00:42,  2.80it/s] 42%|████▏     | 83/200 [00:36<00:42,  2.78it/s] 42%|████▏     | 84/200 [00:36<00:41,  2.79it/s] 42%|████▎     | 85/200 [00:37<00:41,  2.79it/s] 43%|████▎     | 86/200 [00:37<00:40,  2.82it/s] 44%|████▎     | 87/200 [00:37<00:40,  2.81it/s] 44%|████▍     | 88/200 [00:38<00:44,  2.49it/s] 44%|████▍     | 89/200 [00:38<00:42,  2.59it/s] 45%|████▌     | 90/200 [00:39<00:41,  2.66it/s] 46%|████▌     | 91/200 [00:39<00:40,  2.70it/s] 46%|████▌     | 92/200 [00:39<00:39,  2.75it/s] 46%|████▋     | 93/200 [00:40<00:38,  2.78it/s] 47%|████▋     | 94/200 [00:40<00:37,  2.82it/s] 48%|████▊     | 95/200 [00:40<00:37,  2.79it/s] 48%|████▊     | 96/200 [00:41<00:37,  2.77it/s] 48%|████▊     | 97/200 [00:41<00:37,  2.77it/s] 49%|████▉     | 98/200 [00:42<00:40,  2.55it/s] 50%|████▉     | 99/200 [00:42<00:38,  2.61it/s] 50%|█████     | 100/200 [00:42<00:37,  2.67it/s] 50%|█████     | 101/200 [00:43<00:36,  2.71it/s] 51%|█████     | 102/200 [00:43<00:35,  2.73it/s] 52%|█████▏    | 103/200 [00:43<00:35,  2.72it/s] 52%|█████▏    | 104/200 [00:44<00:35,  2.74it/s] 52%|█████▎    | 105/200 [00:44<00:34,  2.78it/s] 53%|█████▎    | 106/200 [00:44<00:34,  2.76it/s] 54%|█████▎    | 107/200 [00:45<00:36,  2.57it/s] 54%|█████▍    | 108/200 [00:45<00:35,  2.61it/s] 55%|█████▍    | 109/200 [00:46<00:34,  2.61it/s] 55%|█████▌    | 110/200 [00:46<00:33,  2.72it/s] 56%|█████▌    | 111/200 [00:46<00:32,  2.76it/s] 56%|█████▌    | 112/200 [00:47<00:31,  2.78it/s] 56%|█████▋    | 113/200 [00:47<00:30,  2.81it/s] 57%|█████▋    | 114/200 [00:47<00:30,  2.85it/s] 57%|█████▊    | 115/200 [00:48<00:29,  2.84it/s] 58%|█████▊    | 116/200 [00:48<00:29,  2.83it/s] 58%|█████▊    | 117/200 [00:49<00:31,  2.60it/s] 59%|█████▉    | 118/200 [00:49<00:30,  2.65it/s] 60%|█████▉    | 119/200 [00:49<00:30,  2.70it/s] 60%|██████    | 120/200 [00:50<00:29,  2.75it/s] 60%|██████    | 121/200 [00:50<00:28,  2.74it/s] 61%|██████    | 122/200 [00:50<00:28,  2.77it/s] 62%|██████▏   | 123/200 [00:51<00:27,  2.77it/s] 62%|██████▏   | 124/200 [00:51<00:27,  2.76it/s] 62%|██████▎   | 125/200 [00:51<00:26,  2.78it/s] 63%|██████▎   | 126/200 [00:52<00:26,  2.79it/s] 64%|██████▎   | 127/200 [00:52<00:26,  2.80it/s] 64%|██████▍   | 128/200 [00:53<00:28,  2.54it/s] 64%|██████▍   | 129/200 [00:53<00:26,  2.63it/s] 65%|██████▌   | 130/200 [00:53<00:25,  2.70it/s] 66%|██████▌   | 131/200 [00:54<00:25,  2.75it/s] 66%|██████▌   | 132/200 [00:54<00:24,  2.78it/s] 66%|██████▋   | 133/200 [00:54<00:23,  2.81it/s] 67%|██████▋   | 134/200 [00:55<00:23,  2.82it/s] 68%|██████▊   | 135/200 [00:55<00:23,  2.81it/s] 68%|██████▊   | 136/200 [00:55<00:23,  2.78it/s] 68%|██████▊   | 137/200 [00:56<00:22,  2.77it/s] 69%|██████▉   | 138/200 [00:56<00:24,  2.52it/s] 70%|██████▉   | 139/200 [00:57<00:23,  2.61it/s] 70%|███████   | 140/200 [00:57<00:22,  2.67it/s] 70%|███████   | 141/200 [00:57<00:21,  2.70it/s] 71%|███████   | 142/200 [00:58<00:21,  2.73it/s] 72%|███████▏  | 143/200 [00:58<00:20,  2.73it/s] 72%|███████▏  | 144/200 [00:58<00:20,  2.71it/s] 72%|███████▎  | 145/200 [00:59<00:20,  2.71it/s] 73%|███████▎  | 146/200 [00:59<00:21,  2.56it/s] 74%|███████▎  | 147/200 [01:00<00:20,  2.65it/s] 74%|███████▍  | 148/200 [01:00<00:19,  2.70it/s] 74%|███████▍  | 149/200 [01:00<00:18,  2.75it/s] 75%|███████▌  | 150/200 [01:01<00:17,  2.78it/s] 76%|███████▌  | 151/200 [01:01<00:17,  2.76it/s] 76%|███████▌  | 152/200 [01:01<00:17,  2.78it/s] 76%|███████▋  | 153/200 [01:02<00:16,  2.77it/s] 77%|███████▋  | 154/200 [01:02<00:16,  2.77it/s] 78%|███████▊  | 155/200 [01:02<00:16,  2.78it/s] 78%|███████▊  | 156/200 [01:03<00:15,  2.82it/s] 78%|███████▊  | 157/200 [01:03<00:16,  2.59it/s] 79%|███████▉  | 158/200 [01:04<00:15,  2.67it/s] 80%|███████▉  | 159/200 [01:04<00:14,  2.73it/s] 80%|████████  | 160/200 [01:04<00:14,  2.75it/s] 80%|████████  | 161/200 [01:05<00:13,  2.81it/s] 81%|████████  | 162/200 [01:05<00:13,  2.82it/s] 82%|████████▏ | 163/200 [01:05<00:13,  2.81it/s] 82%|████████▏ | 164/200 [01:06<00:12,  2.82it/s] 82%|████████▎ | 165/200 [01:06<00:12,  2.84it/s] 83%|████████▎ | 166/200 [01:06<00:12,  2.83it/s] 84%|████████▎ | 167/200 [01:07<00:13,  2.46it/s] 84%|████████▍ | 168/200 [01:07<00:12,  2.55it/s] 84%|████████▍ | 169/200 [01:08<00:11,  2.63it/s] 85%|████████▌ | 170/200 [01:08<00:11,  2.67it/s] 86%|████████▌ | 171/200 [01:08<00:10,  2.71it/s] 86%|████████▌ | 172/200 [01:09<00:10,  2.73it/s] 86%|████████▋ | 173/200 [01:09<00:09,  2.73it/s] 87%|████████▋ | 174/200 [01:09<00:09,  2.76it/s] 88%|████████▊ | 175/200 [01:10<00:08,  2.79it/s] 88%|████████▊ | 176/200 [01:10<00:08,  2.80it/s] 88%|████████▊ | 177/200 [01:11<00:09,  2.55it/s] 89%|████████▉ | 178/200 [01:11<00:08,  2.60it/s] 90%|████████▉ | 179/200 [01:11<00:07,  2.65it/s] 90%|█████████ | 180/200 [01:12<00:07,  2.71it/s] 90%|█████████ | 181/200 [01:12<00:06,  2.73it/s] 91%|█████████ | 182/200 [01:12<00:06,  2.72it/s] 92%|█████████▏| 183/200 [01:13<00:06,  2.74it/s] 92%|█████████▏| 184/200 [01:13<00:05,  2.79it/s] 92%|█████████▎| 185/200 [01:14<00:05,  2.79it/s] 93%|█████████▎| 186/200 [01:14<00:05,  2.56it/s] 94%|█████████▎| 187/200 [01:14<00:04,  2.65it/s] 94%|█████████▍| 188/200 [01:15<00:04,  2.71it/s] 94%|█████████▍| 189/200 [01:15<00:04,  2.74it/s] 95%|█████████▌| 190/200 [01:15<00:03,  2.78it/s] 96%|█████████▌| 191/200 [01:16<00:03,  2.78it/s] 96%|█████████▌| 192/200 [01:16<00:02,  2.80it/s] 96%|█████████▋| 193/200 [01:16<00:02,  2.80it/s] 97%|█████████▋| 194/200 [01:17<00:02,  2.82it/s] 98%|█████████▊| 195/200 [01:17<00:01,  2.81it/s] 98%|█████████▊| 196/200 [01:18<00:01,  2.58it/s] 98%|█████████▊| 197/200 [01:18<00:01,  2.68it/s] 99%|█████████▉| 198/200 [01:18<00:00,  2.75it/s]100%|█████████▉| 199/200 [01:19<00:00,  2.79it/s]100%|██████████| 200/200 [01:19<00:00,  2.80it/s][INFO|trainer.py:3846] 2024-11-21 11:42:00,287 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:690] 2024-11-21 11:42:00,298 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:42:00,298 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:42:00,302 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:42:00,302 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:42:00,355 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [01:19<00:00,  2.80it/s]100%|██████████| 200/200 [01:19<00:00,  2.51it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:42:00,358 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1
+[INFO|configuration_utils.py:690] 2024-11-21 11:42:00,367 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:42:00,368 >> Model config RobertaConfig {
+  "_name_or_path": "FacebookAI/roberta-base",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:42:00,371 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:42:00,371 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lora-wikitext-103-raw-v1/special_tokens_map.json
+{'train_runtime': 79.5779, 'train_samples_per_second': 40.212, 'train_steps_per_second': 2.513, 'train_loss': 1.2093512725830078, 'epoch': 0.01}
+***** train metrics *****
+  epoch                    =     0.0135
+  total_flos               =   787292GF
+  train_loss               =     1.2094
+  train_runtime            = 0:01:19.57
+  train_samples            =     236453
+  train_samples_per_second =     40.212
+  train_steps_per_second   =      2.513
+11/21/2024 11:42:00 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:42:00,412 >> The following columns in the evaluation set don't have a corresponding argument in `PeftModelForCausalLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `PeftModelForCausalLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:42:00,414 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:42:00,414 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:42:00,414 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  6.06it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.42it/s] 25%|██▌       | 4/16 [00:00<00:03,  3.75it/s] 31%|███▏      | 5/16 [00:01<00:03,  3.40it/s] 38%|███▊      | 6/16 [00:01<00:03,  3.30it/s] 44%|████▍     | 7/16 [00:02<00:03,  2.86it/s] 50%|█████     | 8/16 [00:02<00:02,  2.92it/s] 56%|█████▋    | 9/16 [00:02<00:02,  2.95it/s] 62%|██████▎   | 10/16 [00:03<00:02,  2.97it/s] 69%|██████▉   | 11/16 [00:03<00:01,  2.97it/s] 75%|███████▌  | 12/16 [00:03<00:01,  3.01it/s] 81%|████████▏ | 13/16 [00:04<00:01,  3.00it/s] 88%|████████▊ | 14/16 [00:04<00:00,  3.08it/s] 94%|█████████▍| 15/16 [00:04<00:00,  3.12it/s]100%|██████████| 16/16 [00:04<00:00,  3.48it/s]100%|██████████| 16/16 [00:04<00:00,  3.22it/s]
+***** eval metrics *****
+  epoch                   =     0.0135
+  eval_accuracy           =      0.725
+  eval_loss               =     1.2927
+  eval_runtime            = 0:00:05.32
+  eval_samples            =        496
+  eval_samples_per_second =     93.222
+  eval_steps_per_second   =      3.007
+  perplexity              =     3.6425
+------------------------------------
+LagEmbed: Training FacebookAI/roberta-base on wikitext (wikitext-103-raw-v1) with LagEmbed (in_channels=768, n_components=2, dof=3)
+11/21/2024 11:42:10 - WARNING - __main__ - Process rank: 0, device: cuda:0, n_gpu: 4, distributed training: False, 16-bits training: False
+11/21/2024 11:42:10 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=4,
+accelerator_config={'split_batches': False, 'dispatch_batches': None, 'even_batches': True, 'use_seedable_sampler': True, 'non_blocking': False, 'gradient_accumulation_kwargs': None, 'use_configured_state': False},
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+average_tokens_across_devices=False,
+batch_eval_metrics=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_persistent_workers=False,
+dataloader_pin_memory=True,
+dataloader_prefetch_factor=None,
+ddp_backend=None,
+ddp_broadcast_buffers=None,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+dispatch_batches=None,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_do_concat_batches=True,
+eval_on_start=False,
+eval_steps=None,
+eval_strategy=IntervalStrategy.NO,
+eval_use_gather_object=False,
+evaluation_strategy=None,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'min_num_params': 0, 'xla': False, 'xla_fsdp_v2': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+gradient_checkpointing_kwargs=None,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_always_push=False,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_for_metrics=[],
+include_inputs_for_metrics=False,
+include_num_input_tokens_seen=False,
+include_tokens_per_second=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=0.001,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=0,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=/tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/runs/Nov21_11-42-09_cs-Precision-7960-Tower,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=500,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_kwargs={},
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=200,
+metric_for_best_model=None,
+mp_parameters=,
+neftune_noise_alpha=None,
+no_cuda=False,
+num_train_epochs=3.0,
+optim=OptimizerNames.ADAMW_TORCH,
+optim_args=None,
+optim_target_modules=None,
+output_dir=/tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1,
+overwrite_output_dir=False,
+past_index=-1,
+per_device_eval_batch_size=8,
+per_device_train_batch_size=4,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=True,
+report_to=[],
+restore_callback_states_from_checkpoint=False,
+resume_from_checkpoint=None,
+run_name=/tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1,
+save_on_each_node=False,
+save_only_model=False,
+save_safetensors=True,
+save_steps=500,
+save_strategy=SaveStrategy.STEPS,
+save_total_limit=None,
+seed=42,
+skip_memory_metrics=True,
+split_batches=None,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torch_empty_cache_steps=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_cpu=False,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_liger_kernel=False,
+use_mps_device=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+)
+Overwrite dataset info from restored data version if exists.
+11/21/2024 11:42:12 - INFO - datasets.builder - Overwrite dataset info from restored data version if exists.
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:42:12 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+11/21/2024 11:42:12 - INFO - datasets.builder - Found cached dataset wikitext (/home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3)
+Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+11/21/2024 11:42:12 - INFO - datasets.info - Loading Dataset info from /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3
+[INFO|configuration_utils.py:690] 2024-11-21 11:42:13,003 >> loading configuration file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/config.json
+[INFO|configuration_utils.py:759] 2024-11-21 11:42:13,004 >> Model config RobertaConfig {
+  "_name_or_path": "/tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1",
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "classifier_dropout": null,
+  "eos_token_id": 2,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-05,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 1,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.47.0.dev0",
+  "type_vocab_size": 1,
+  "use_cache": true,
+  "vocab_size": 50265
+}
+
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,025 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,025 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,025 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,025 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,026 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2022] 2024-11-21 11:42:13,026 >> loading file tokenizer_config.json
+[INFO|modeling_utils.py:3944] 2024-11-21 11:42:13,152 >> loading weights file /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1/model.safetensors
+[INFO|modeling_utils.py:4813] 2024-11-21 11:42:13,405 >> All model checkpoint weights were used when initializing LagRobertaForMaskedLM.
+
+[INFO|modeling_utils.py:4821] 2024-11-21 11:42:13,405 >> All the weights of LagRobertaForMaskedLM were initialized from the model checkpoint at /tmp/test-mlm-roberta-base-base-wikitext-103-raw-v1.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use LagRobertaForMaskedLM for predictions without further training.
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f4ce6a20ae8d1053.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-f4ce6a20ae8d1053.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-9e8e70325b3b9876.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-9e8e70325b3b9876.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b0fa7db7898df124.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-b0fa7db7898df124.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-3dfd0231447c4604.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-3dfd0231447c4604.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-13b2f9ee3fe05bad.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-13b2f9ee3fe05bad.arrow
+Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-5c8465906987c189.arrow
+11/21/2024 11:42:13 - INFO - datasets.arrow_dataset - Loading cached processed dataset at /home/cs/.cache/huggingface/datasets/wikitext/wikitext-103-raw-v1/0.0.0/b08601e04326c79dfdd32d625aee71d232d685c3/cache-5c8465906987c189.arrow
+[WARNING|trainer.py:664] 2024-11-21 11:42:15,308 >> max_steps is given, it will override any value given in num_train_epochs
+[INFO|trainer.py:890] 2024-11-21 11:42:15,430 >> The following columns in the training set don't have a corresponding argument in `LagRobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `LagRobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:2335] 2024-11-21 11:42:15,435 >> ***** Running training *****
+[INFO|trainer.py:2336] 2024-11-21 11:42:15,435 >>   Num examples = 236,453
+[INFO|trainer.py:2337] 2024-11-21 11:42:15,435 >>   Num Epochs = 1
+[INFO|trainer.py:2338] 2024-11-21 11:42:15,435 >>   Instantaneous batch size per device = 4
+[INFO|trainer.py:2340] 2024-11-21 11:42:15,435 >>   Training with DataParallel so batch size has been adjusted to: 16
+[INFO|trainer.py:2341] 2024-11-21 11:42:15,435 >>   Total train batch size (w. parallel, distributed & accumulation) = 16
+[INFO|trainer.py:2342] 2024-11-21 11:42:15,435 >>   Gradient Accumulation steps = 1
+[INFO|trainer.py:2343] 2024-11-21 11:42:15,435 >>   Total optimization steps = 200
+[INFO|trainer.py:2344] 2024-11-21 11:42:15,435 >>   Number of trainable parameters = 303,128
+  0%|          | 0/200 [00:00<?, ?it/s]/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 1/200 [00:06<22:25,  6.76s/it]  1%|          | 2/200 [00:07<09:43,  2.95s/it]  2%|▏         | 3/200 [00:07<05:40,  1.73s/it]  2%|▏         | 4/200 [00:07<03:47,  1.16s/it]  2%|▎         | 5/200 [00:07<02:43,  1.19it/s]  3%|▎         | 6/200 [00:08<02:05,  1.54it/s]  4%|▎         | 7/200 [00:08<01:42,  1.89it/s]  4%|▍         | 8/200 [00:08<01:26,  2.22it/s]  4%|▍         | 9/200 [00:09<01:16,  2.51it/s]  5%|▌         | 10/200 [00:09<01:09,  2.73it/s]  6%|▌         | 11/200 [00:09<01:04,  2.94it/s]  6%|▌         | 12/200 [00:09<00:59,  3.14it/s]  6%|▋         | 13/200 [00:10<00:57,  3.26it/s]  7%|▋         | 14/200 [00:10<00:55,  3.36it/s]  8%|▊         | 15/200 [00:10<00:53,  3.45it/s]  8%|▊         | 16/200 [00:10<00:52,  3.53it/s]  8%|▊         | 17/200 [00:11<00:52,  3.51it/s]  9%|▉         | 18/200 [00:11<00:52,  3.48it/s] 10%|▉         | 19/200 [00:11<00:51,  3.51it/s] 10%|█         | 20/200 [00:12<00:50,  3.57it/s] 10%|█         | 21/200 [00:12<00:49,  3.58it/s] 11%|█         | 22/200 [00:12<00:50,  3.56it/s] 12%|█▏        | 23/200 [00:12<00:49,  3.60it/s] 12%|█▏        | 24/200 [00:13<00:49,  3.56it/s] 12%|█▎        | 25/200 [00:13<00:49,  3.54it/s] 13%|█▎        | 26/200 [00:13<00:49,  3.50it/s] 14%|█▎        | 27/200 [00:14<00:49,  3.48it/s] 14%|█▍        | 28/200 [00:14<00:49,  3.47it/s] 14%|█▍        | 29/200 [00:14<00:49,  3.48it/s] 15%|█▌        | 30/200 [00:14<00:48,  3.51it/s] 16%|█▌        | 31/200 [00:15<00:48,  3.50it/s] 16%|█▌        | 32/200 [00:15<00:51,  3.25it/s] 16%|█▋        | 33/200 [00:15<00:48,  3.43it/s] 17%|█▋        | 34/200 [00:16<00:47,  3.50it/s] 18%|█▊        | 35/200 [00:16<00:46,  3.54it/s] 18%|█▊        | 36/200 [00:16<00:45,  3.58it/s] 18%|█▊        | 37/200 [00:16<00:45,  3.57it/s] 19%|█▉        | 38/200 [00:17<00:45,  3.55it/s] 20%|█▉        | 39/200 [00:17<00:45,  3.56it/s] 20%|██        | 40/200 [00:17<00:44,  3.58it/s] 20%|██        | 41/200 [00:18<00:44,  3.54it/s] 21%|██        | 42/200 [00:18<00:44,  3.57it/s] 22%|██▏       | 43/200 [00:18<00:44,  3.54it/s] 22%|██▏       | 44/200 [00:18<00:43,  3.55it/s] 22%|██▎       | 45/200 [00:19<00:43,  3.57it/s] 23%|██▎       | 46/200 [00:19<00:43,  3.56it/s] 24%|██▎       | 47/200 [00:19<00:43,  3.52it/s] 24%|██▍       | 48/200 [00:20<00:43,  3.52it/s] 24%|██▍       | 49/200 [00:20<00:43,  3.49it/s] 25%|██▌       | 50/200 [00:20<00:42,  3.50it/s] 26%|██▌       | 51/200 [00:20<00:42,  3.52it/s] 26%|██▌       | 52/200 [00:21<00:41,  3.55it/s] 26%|██▋       | 53/200 [00:21<00:40,  3.59it/s] 27%|██▋       | 54/200 [00:21<00:40,  3.59it/s] 28%|██▊       | 55/200 [00:22<00:41,  3.53it/s] 28%|██▊       | 56/200 [00:22<00:41,  3.49it/s] 28%|██▊       | 57/200 [00:22<00:41,  3.46it/s] 29%|██▉       | 58/200 [00:22<00:41,  3.40it/s] 30%|██▉       | 59/200 [00:23<00:41,  3.39it/s] 30%|███       | 60/200 [00:23<00:40,  3.45it/s] 30%|███       | 61/200 [00:23<00:39,  3.48it/s] 31%|███       | 62/200 [00:24<00:39,  3.49it/s] 32%|███▏      | 63/200 [00:24<00:39,  3.50it/s] 32%|███▏      | 64/200 [00:24<00:39,  3.46it/s] 32%|███▎      | 65/200 [00:24<00:38,  3.48it/s] 33%|███▎      | 66/200 [00:25<00:38,  3.53it/s] 34%|███▎      | 67/200 [00:25<00:39,  3.33it/s] 34%|███▍      | 68/200 [00:25<00:45,  2.91it/s] 34%|███▍      | 69/200 [00:26<00:43,  3.02it/s] 35%|███▌      | 70/200 [00:26<00:41,  3.15it/s] 36%|███▌      | 71/200 [00:26<00:39,  3.25it/s] 36%|███▌      | 72/200 [00:27<00:38,  3.32it/s] 36%|███▋      | 73/200 [00:27<00:38,  3.32it/s] 37%|███▋      | 74/200 [00:27<00:37,  3.40it/s] 38%|███▊      | 75/200 [00:27<00:36,  3.39it/s] 38%|███▊      | 76/200 [00:28<00:36,  3.36it/s] 38%|███▊      | 77/200 [00:28<00:36,  3.39it/s] 39%|███▉      | 78/200 [00:28<00:36,  3.38it/s] 40%|███▉      | 79/200 [00:29<00:35,  3.40it/s] 40%|████      | 80/200 [00:29<00:35,  3.42it/s] 40%|████      | 81/200 [00:29<00:34,  3.45it/s] 41%|████      | 82/200 [00:30<00:33,  3.48it/s] 42%|████▏     | 83/200 [00:30<00:33,  3.48it/s] 42%|████▏     | 84/200 [00:30<00:33,  3.46it/s] 42%|████▎     | 85/200 [00:30<00:33,  3.39it/s] 43%|████▎     | 86/200 [00:31<00:34,  3.34it/s] 44%|████▎     | 87/200 [00:31<00:33,  3.37it/s] 44%|████▍     | 88/200 [00:31<00:32,  3.44it/s] 44%|████▍     | 89/200 [00:32<00:31,  3.50it/s] 45%|████▌     | 90/200 [00:32<00:32,  3.42it/s] 46%|████▌     | 91/200 [00:32<00:31,  3.48it/s] 46%|████▌     | 92/200 [00:32<00:30,  3.48it/s] 46%|████▋     | 93/200 [00:33<00:30,  3.54it/s] 47%|████▋     | 94/200 [00:33<00:30,  3.51it/s] 48%|████▊     | 95/200 [00:33<00:29,  3.52it/s] 48%|████▊     | 96/200 [00:34<00:29,  3.54it/s] 48%|████▊     | 97/200 [00:34<00:29,  3.53it/s] 49%|████▉     | 98/200 [00:34<00:29,  3.51it/s] 50%|████▉     | 99/200 [00:34<00:28,  3.54it/s] 50%|█████     | 100/200 [00:35<00:29,  3.43it/s] 50%|█████     | 101/200 [00:35<00:28,  3.45it/s] 51%|█████     | 102/200 [00:35<00:27,  3.52it/s] 52%|█████▏    | 103/200 [00:36<00:27,  3.58it/s] 52%|█████▏    | 104/200 [00:36<00:28,  3.33it/s] 52%|█████▎    | 105/200 [00:36<00:27,  3.43it/s] 53%|█████▎    | 106/200 [00:36<00:27,  3.42it/s] 54%|█████▎    | 107/200 [00:37<00:26,  3.48it/s] 54%|█████▍    | 108/200 [00:37<00:25,  3.57it/s] 55%|█████▍    | 109/200 [00:37<00:25,  3.55it/s] 55%|█████▌    | 110/200 [00:38<00:25,  3.53it/s] 56%|█████▌    | 111/200 [00:38<00:24,  3.59it/s] 56%|█████▌    | 112/200 [00:38<00:24,  3.58it/s] 56%|█████▋    | 113/200 [00:38<00:24,  3.57it/s] 57%|█████▋    | 114/200 [00:39<00:23,  3.61it/s] 57%|█████▊    | 115/200 [00:39<00:23,  3.59it/s] 58%|█████▊    | 116/200 [00:39<00:23,  3.58it/s] 58%|█████▊    | 117/200 [00:40<00:22,  3.63it/s] 59%|█████▉    | 118/200 [00:40<00:22,  3.61it/s] 60%|█████▉    | 119/200 [00:40<00:22,  3.67it/s] 60%|██████    | 120/200 [00:40<00:21,  3.66it/s] 60%|██████    | 121/200 [00:41<00:21,  3.63it/s] 61%|██████    | 122/200 [00:41<00:21,  3.61it/s] 62%|██████▏   | 123/200 [00:41<00:21,  3.61it/s] 62%|██████▏   | 124/200 [00:41<00:21,  3.62it/s] 62%|██████▎   | 125/200 [00:42<00:20,  3.61it/s] 63%|██████▎   | 126/200 [00:42<00:20,  3.59it/s] 64%|██████▎   | 127/200 [00:42<00:20,  3.58it/s] 64%|██████▍   | 128/200 [00:43<00:19,  3.61it/s] 64%|██████▍   | 129/200 [00:43<00:19,  3.59it/s] 65%|██████▌   | 130/200 [00:43<00:19,  3.60it/s] 66%|██████▌   | 131/200 [00:43<00:19,  3.59it/s] 66%|██████▌   | 132/200 [00:44<00:18,  3.59it/s] 66%|██████▋   | 133/200 [00:44<00:18,  3.61it/s] 67%|██████▋   | 134/200 [00:44<00:18,  3.59it/s] 68%|██████▊   | 135/200 [00:45<00:18,  3.60it/s] 68%|██████▊   | 136/200 [00:45<00:17,  3.63it/s] 68%|██████▊   | 137/200 [00:45<00:17,  3.61it/s] 69%|██████▉   | 138/200 [00:45<00:17,  3.57it/s] 70%|██████▉   | 139/200 [00:46<00:16,  3.60it/s] 70%|███████   | 140/200 [00:46<00:17,  3.34it/s] 70%|███████   | 141/200 [00:46<00:16,  3.49it/s] 71%|███████   | 142/200 [00:47<00:16,  3.50it/s] 72%|███████▏  | 143/200 [00:47<00:16,  3.48it/s] 72%|███████▏  | 144/200 [00:47<00:15,  3.53it/s] 72%|███████▎  | 145/200 [00:47<00:15,  3.52it/s] 73%|███████▎  | 146/200 [00:48<00:15,  3.49it/s] 74%|███████▎  | 147/200 [00:48<00:15,  3.46it/s] 74%|███████▍  | 148/200 [00:48<00:15,  3.43it/s] 74%|███████▍  | 149/200 [00:49<00:14,  3.41it/s] 75%|███████▌  | 150/200 [00:49<00:14,  3.37it/s] 76%|███████▌  | 151/200 [00:49<00:14,  3.37it/s] 76%|███████▌  | 152/200 [00:49<00:14,  3.39it/s] 76%|███████▋  | 153/200 [00:50<00:13,  3.42it/s] 77%|███████▋  | 154/200 [00:50<00:13,  3.43it/s] 78%|███████▊  | 155/200 [00:50<00:13,  3.39it/s] 78%|███████▊  | 156/200 [00:51<00:12,  3.40it/s] 78%|███████▊  | 157/200 [00:51<00:12,  3.39it/s] 79%|███████▉  | 158/200 [00:51<00:12,  3.35it/s] 80%|███████▉  | 159/200 [00:52<00:12,  3.34it/s] 80%|████████  | 160/200 [00:52<00:12,  3.31it/s] 80%|████████  | 161/200 [00:52<00:11,  3.36it/s] 81%|████████  | 162/200 [00:52<00:11,  3.41it/s] 82%|████████▏ | 163/200 [00:53<00:10,  3.48it/s] 82%|████████▏ | 164/200 [00:53<00:10,  3.52it/s] 82%|████████▎ | 165/200 [00:53<00:09,  3.57it/s] 83%|████████▎ | 166/200 [00:53<00:09,  3.56it/s] 84%|████████▎ | 167/200 [00:54<00:09,  3.56it/s] 84%|████████▍ | 168/200 [00:54<00:09,  3.53it/s] 84%|████████▍ | 169/200 [00:54<00:08,  3.49it/s] 85%|████████▌ | 170/200 [00:55<00:08,  3.53it/s] 86%|████████▌ | 171/200 [00:55<00:08,  3.51it/s] 86%|████████▌ | 172/200 [00:55<00:07,  3.55it/s] 86%|████████▋ | 173/200 [00:55<00:07,  3.57it/s] 87%|████████▋ | 174/200 [00:56<00:07,  3.57it/s] 88%|████████▊ | 175/200 [00:56<00:06,  3.58it/s] 88%|████████▊ | 176/200 [00:56<00:07,  3.29it/s] 88%|████████▊ | 177/200 [00:57<00:06,  3.42it/s] 89%|████████▉ | 178/200 [00:57<00:06,  3.44it/s] 90%|████████▉ | 179/200 [00:57<00:06,  3.44it/s] 90%|█████████ | 180/200 [00:58<00:05,  3.48it/s] 90%|█████████ | 181/200 [00:58<00:05,  3.47it/s] 91%|█████████ | 182/200 [00:58<00:05,  3.56it/s] 92%|█████████▏| 183/200 [00:58<00:04,  3.56it/s] 92%|█████████▏| 184/200 [00:59<00:04,  3.63it/s] 92%|█████████▎| 185/200 [00:59<00:04,  3.62it/s] 93%|█████████▎| 186/200 [00:59<00:03,  3.63it/s] 94%|█████████▎| 187/200 [00:59<00:03,  3.58it/s] 94%|█████████▍| 188/200 [01:00<00:03,  3.57it/s] 94%|█████████▍| 189/200 [01:00<00:03,  3.59it/s] 95%|█████████▌| 190/200 [01:00<00:02,  3.63it/s] 96%|█████████▌| 191/200 [01:01<00:02,  3.66it/s] 96%|█████████▌| 192/200 [01:01<00:02,  3.62it/s] 96%|█████████▋| 193/200 [01:01<00:01,  3.58it/s] 97%|█████████▋| 194/200 [01:01<00:01,  3.56it/s] 98%|█████████▊| 195/200 [01:02<00:01,  3.58it/s] 98%|█████████▊| 196/200 [01:02<00:01,  3.59it/s] 98%|█████████▊| 197/200 [01:02<00:00,  3.60it/s] 99%|█████████▉| 198/200 [01:03<00:00,  3.54it/s]100%|█████████▉| 199/200 [01:03<00:00,  3.55it/s]100%|██████████| 200/200 [01:03<00:00,  3.47it/s][INFO|trainer.py:3846] 2024-11-21 11:43:19,042 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/checkpoint-200
+[INFO|configuration_utils.py:416] 2024-11-21 11:43:19,043 >> Configuration saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/checkpoint-200/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:43:20,065 >> Model weights saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/checkpoint-200/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:43:20,066 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/checkpoint-200/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:43:20,067 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/checkpoint-200/special_tokens_map.json
+[INFO|trainer.py:2605] 2024-11-21 11:43:20,120 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                                 100%|██████████| 200/200 [01:04<00:00,  3.47it/s]100%|██████████| 200/200 [01:04<00:00,  3.09it/s]
+[INFO|trainer.py:3846] 2024-11-21 11:43:20,123 >> Saving model checkpoint to /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1
+[INFO|configuration_utils.py:416] 2024-11-21 11:43:20,124 >> Configuration saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/config.json
+[INFO|modeling_utils.py:3045] 2024-11-21 11:43:21,136 >> Model weights saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/model.safetensors
+[INFO|tokenization_utils_base.py:2462] 2024-11-21 11:43:21,137 >> tokenizer config file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2471] 2024-11-21 11:43:21,137 >> Special tokens file saved in /tmp/test-mlm-roberta-base-lagembed-wikitext-103-raw-v1/special_tokens_map.json
+{'train_runtime': 64.6847, 'train_samples_per_second': 49.471, 'train_steps_per_second': 3.092, 'train_loss': 1.081935043334961, 'epoch': 0.01}
+***** train metrics *****
+  epoch                    =     0.0135
+  total_flos               =   787367GF
+  train_loss               =     1.0819
+  train_runtime            = 0:01:04.68
+  train_samples            =     236453
+  train_samples_per_second =     49.471
+  train_steps_per_second   =      3.092
+11/21/2024 11:43:21 - INFO - __main__ - *** Evaluate ***
+[INFO|trainer.py:890] 2024-11-21 11:43:21,183 >> The following columns in the evaluation set don't have a corresponding argument in `LagRobertaForMaskedLM.forward` and have been ignored: special_tokens_mask. If special_tokens_mask are not expected by `LagRobertaForMaskedLM.forward`,  you can safely ignore this message.
+[INFO|trainer.py:4162] 2024-11-21 11:43:21,185 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:4164] 2024-11-21 11:43:21,185 >>   Num examples = 496
+[INFO|trainer.py:4167] 2024-11-21 11:43:21,185 >>   Batch size = 32
+/home/cs/anaconda3/envs/torch121/lib/python3.11/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|          | 0/16 [00:00<?, ?it/s] 12%|█▎        | 2/16 [00:00<00:02,  6.22it/s] 19%|█▉        | 3/16 [00:00<00:02,  4.41it/s] 25%|██▌       | 4/16 [00:00<00:03,  3.82it/s] 31%|███▏      | 5/16 [00:01<00:03,  3.46it/s] 38%|███▊      | 6/16 [00:01<00:03,  3.27it/s] 44%|████▍     | 7/16 [00:01<00:02,  3.15it/s] 50%|█████     | 8/16 [00:02<00:02,  3.13it/s] 56%|█████▋    | 9/16 [00:02<00:02,  2.70it/s] 62%|██████▎   | 10/16 [00:03<00:02,  2.84it/s] 69%|██████▉   | 11/16 [00:03<00:01,  2.90it/s] 75%|███████▌  | 12/16 [00:03<00:01,  2.96it/s] 81%|████████▏ | 13/16 [00:04<00:01,  2.99it/s] 88%|████████▊ | 14/16 [00:04<00:00,  3.01it/s] 94%|█████████▍| 15/16 [00:04<00:00,  3.07it/s]100%|██████████| 16/16 [00:04<00:00,  3.53it/s]100%|██████████| 16/16 [00:04<00:00,  3.22it/s]
+***** eval metrics *****
+  epoch                   =     0.0135
+  eval_accuracy           =     0.7251
+  eval_loss               =     1.2924
+  eval_runtime            = 0:00:05.32
+  eval_samples            =        496
+  eval_samples_per_second =     93.164
+  eval_steps_per_second   =      3.005
+  perplexity              =     3.6414
+------------------------------------
