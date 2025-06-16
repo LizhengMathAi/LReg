@@ -30,15 +30,16 @@ GLUE is made up of a total of 9 different tasks. Here is how to run the script o
 ```bash
 export TASK_NAME=mrpc
 
-python run_glue.py \
+CUDA_VISIBLE_DEVICES=0 python run_glue.py \
   --model_name_or_path google-bert/bert-base-cased \
   --task_name $TASK_NAME \
+  --use_lreg \
   --do_train \
   --do_eval \
-  --max_seq_length 128 \
-  --per_device_train_batch_size 32 \
-  --learning_rate 2e-5 \
-  --num_train_epochs 3 \
+  --max_seq_length 512 \
+  --per_device_train_batch_size 16 \
+  --learning_rate 4e-4 \
+  --num_train_epochs 30 \
   --output_dir /tmp/$TASK_NAME/
 ```
 
