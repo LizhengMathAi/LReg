@@ -115,7 +115,7 @@ where task name can be one of cola, sst2, mrpc, stsb, qqp, mnli, qnli, rte, wnli
 ### Reproducing Our Results
 Add the `--use_lreg` flag to the baseline command above.
 
-## Language model training
+## Language Modeling
 
 Fine-tuning (or training from scratch) the library models for language modeling on a text dataset for GPT, GPT-2, ALBERT, BERT, DistilBERT, RoBERTa, XLNet... GPT and GPT-2 are trained or fine-tuned using a causal language modeling (CLM) loss while ALBERT, BERT, DistilBERT and RoBERTa are trained or fine-tuned using a masked language modeling (MLM) loss. 
 
